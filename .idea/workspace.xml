@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b196cdf2-5fde-44ae-9332-54b877dc2b2c" name="Changes" comment="Front end data">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/RegistrationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/dao/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/form/RegisterFormBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/registration/register.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/registration/userSearch.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/include/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/include/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/psproj/CasestudyApplicationTests.class" beforeDir="false" />
-    </list>
+    <list default="true" id="b196cdf2-5fde-44ae-9332-54b877dc2b2c" name="Changes" comment="committing the changes for user register page" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +101,7 @@
       <workItem from="1644286208477" duration="299000" />
       <workItem from="1644286520281" duration="3651000" />
       <workItem from="1644438249443" duration="20148000" />
-      <workItem from="1644711594819" duration="7492000" />
+      <workItem from="1644711594819" duration="7806000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1644286942726</created>
@@ -127,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644293911271</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="committing the changes for user register page">
+      <created>1644731356992</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1644731356993</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,7 +144,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Front end data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Front end data" />
+    <MESSAGE value="committing the changes for user register page" />
+    <option name="LAST_COMMIT_MESSAGE" value="committing the changes for user register page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
