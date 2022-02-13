@@ -40,9 +40,9 @@
         <td> | </td>
         <td><a href="/registration-url-path/register">User Registration</a></td>
         <td> | </td>
-        <td><a href="/registration-url-path/userList">Search User</a></td>
-        <td> | </td>
-        <td><a href="/registration-url-path/AdvancedSearchuserList">Advanced Search</a></td>
+        <td><a href="/registration-url-path/userSearch">Search User</a></td>
+<%--        <td> | </td>--%>
+<%--        <td><a href="/registration-url-path/AdvancedSearchuserList">Advanced Search</a></td>--%>
     </tr>
 
 </table>
