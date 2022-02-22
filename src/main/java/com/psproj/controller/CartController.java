@@ -1,10 +1,7 @@
 package com.psproj.controller;
 
 import com.psproj.form.RegisterProductBean;
-import com.psproj.repository.dao.OrderDao;
-import com.psproj.repository.dao.ProductCategoryDAO;
-import com.psproj.repository.dao.ProductDAO;
-import com.psproj.repository.dao.UserDao;
+import com.psproj.repository.dao.*;
 import com.psproj.repository.entity.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +34,9 @@ public class CartController {
 
     @Autowired
     OrderDao orderDao;
+
+    @Autowired
+    OrderItemDao orderItemDao;
 
     //Create Product Controller which will display the Product form to add Product in DB
 
@@ -84,9 +84,25 @@ public class CartController {
             System.out.println(ord.toString());
         }
 
-        // Add the order Item
-        OrderItem orderItem = new OrderItem();
-
+        // Add the order Item - check if order Item for the same order id and product id already existing
+        //if yes then increment the quantity other wise insert a new record with the new product id.
+        OrderItem orderItemCart = new OrderItem();
+        List<OrderItem> orderItems = orderItemDao.findByOrderIdAndProductId(ord.getId(), product.getId());
+        if(orderItems != null && orderItems.size() > 0){
+             orderItemCart = orderItems.get(0);
+             orderItemCart.setQuantity(orderItemCart.getQuantity()+1);
+             orderItemDao.save(orderItemCart);
+            System.out.println("updated the quantity of order item cart  " + orderItemCart);
+        } else{
+            orderItemCart = new OrderItem();
+            orderItemCart.setOrder(ord);
+            orderItemCart.setQuantity(1);
+            orderItemCart.setImageUrl(product.getImageUrl());
+            orderItemCart.setUnitPrice(product.getUnitPrice());
+            orderItemCart.setProductId(product.getId());
+            orderItemDao.save(orderItemCart);
+            System.out.println("order item saved" + orderItemCart.toString());
+        }
 
         response.setViewName("redirect:/productSearch");
 //        response.setViewName("product/searchProduct");

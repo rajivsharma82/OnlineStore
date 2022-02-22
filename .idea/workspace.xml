@@ -5,89 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b196cdf2-5fde-44ae-9332-54b877dc2b2c" name="Changes" comment="committing the changes for user register page">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/config/RepositoryConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/AdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/IndexController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/LoginControllerold.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/form/RegisterProductBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/OrderDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/ProductCategoryDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/ProductDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/UserRoleDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/entity/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/entity/OrderItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/entity/UserRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/security/UserDetailsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logback-spring.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/cart/cart.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login/logoutSuccess.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/product/searchProduct.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/registration/register1.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/userEdit.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/Album1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/Album2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/Album3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/Album4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/BandMembers.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/Cofee.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/FBlogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/HeaderBackground.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/Nintendo.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/NintendoGame.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/Shirt.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/SpotityLogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/XBOX.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/YouTubeLogo.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/adele.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/adele1.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/adele2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/adele3.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/game_3d.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/game_board.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/game_chess.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/game_console.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/game_dart.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/game_dart2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/game_monopoly1.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/game_video.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/playstation.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/shoe_men.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/shoe_men2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/shoe_men3.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/shoe_women.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/tshirt_kid.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/Images/tshirt_men.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/css/signup.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/css/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pub/js/signup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/OrderItemDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OnlineStore.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OnlineStore.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/entity/ProductCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/entity/ProductCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/form/RegisterFormBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/form/RegisterFormBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/include/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/include/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login/success.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/product/addproduct.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/product/addproduct.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/registration/userSearch.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/userSearch.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/controller/RegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/controller/RegistrationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/dao/UserDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/entity/Product.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/entity/ProductCategory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/entity/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/form/RegisterFormBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/form/RegisterFormBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/controller/CartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/controller/CartController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,9 +77,9 @@
       <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/product" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.psproj.repository.dao" />
       <recent name="com.psproj.repository.entity" />
       <recent name="com.psproj.controller" />
-      <recent name="com.psproj.repository.dao" />
       <recent name="com.psproj.form" />
       <recent name="com.psproj.config" />
     </key>
@@ -197,7 +118,7 @@
       <workItem from="1644438249443" duration="20148000" />
       <workItem from="1644711594819" duration="10245000" />
       <workItem from="1644972945487" duration="104208000" />
-      <workItem from="1645490906370" duration="16555000" />
+      <workItem from="1645490906370" duration="18203000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1644286942726</created>
@@ -308,7 +229,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java</url>
-          <line>97</line>
+          <line>113</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
