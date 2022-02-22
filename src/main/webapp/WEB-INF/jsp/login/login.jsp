@@ -1,21 +1,23 @@
 
-<%--<jsp:include page="../include/header.jsp"/>--%>
+<jsp:include page="../include/header.jsp"/>
 
-<!DOCTYPE html>
-<html lang="en">
+<%--<!DOCTYPE html>--%>
+<%--<html lang="en">--%>
 <head>
-
+    <link rel="stylesheet" href="../../../pub/css/signup.css">
 </head>
 <body>
-<div class="container-login">
+
+<div class="container-login" style=" margin-top: 10% ; margin-left: 25%">
     <h1>Login</h1>
     <!-- Form  -->
-    <form id="form"  method="GET" action="/loginSubmit">
+<%--    <form id="form"  method="GET" action="/loginSubmit">--%>
+        <form action="/login/loginSecurityPost" method="POST">
 
         <!-- Full Name -->
         <div class="form-group">
-            <label for="name"> Full Name</label>
-            <input type="text" id="name" name = "name" placeholder="Full Name" required minlength="3" maxlength="100">
+            <label for="email"> Email</label>
+            <input type="text" id="email" name = "username" placeholder="Email" required minlength="3" maxlength="25">
         </div>
 
         <!-- Password-->
@@ -26,10 +28,11 @@
         <br><br>
 
         <button type="submit">Login</button>
+
         <h3 style="color: red"> ${ errormessage}  </h3>
     </form>
 
-    <p>Don't have an account? <a href="signup">signup here</a> </p>
+    <p>Don't have an account? <a href="/registration-url-path/register">signup here</a> </p>
 </div>
 </body>
 </html>

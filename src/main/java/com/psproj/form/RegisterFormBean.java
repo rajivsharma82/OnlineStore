@@ -30,6 +30,7 @@ public class RegisterFormBean {
 
     private String password;
     private String confirmPassword;
+    private String phone;
 
     // This list is populated by controller for all error messages in binding result
     private List<String> errorMessages = new ArrayList<>();

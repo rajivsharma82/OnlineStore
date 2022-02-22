@@ -14,7 +14,9 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="entityManagerFactory" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
@@ -51,7 +53,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-parameter-names:2.13.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.15" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.15" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.15" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.springframework.boot:spring-boot-devtools:2.6.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.6.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.6.3" level="project" />
@@ -102,16 +103,24 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.56" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.tomcat.embed:tomcat-embed-jasper:9.0.56" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jdt:ecj:3.18.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:2.6.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.15" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.6.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.6.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-taglibs:5.6.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-acl:5.6.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.3.15" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.6.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:5.6.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.15" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.15" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.15" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="library" name="Maven: taglibs:standard:1.1.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-jpa:2.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-orm:5.3.15" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.3.15" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.15" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.15" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.15" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.15" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.33" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.28" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.6.3" level="project" />
