@@ -4,9 +4,11 @@ import com.psproj.form.RegisterFormBean;
 import com.psproj.form.RegisterProductBean;
 import com.psproj.repository.dao.ProductCategoryDAO;
 import com.psproj.repository.dao.ProductDAO;
+import com.psproj.repository.entity.Order;
 import com.psproj.repository.entity.Product;
 import com.psproj.repository.entity.ProductCategory;
 import com.psproj.repository.entity.User;
+import com.psproj.utilities.OnlineStoreUtilities;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -24,6 +26,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+
 @Controller
 public class ProductController {
 
@@ -35,7 +38,8 @@ public class ProductController {
     @Autowired
     ProductDAO productDAO;
 
-
+    @Autowired
+    OnlineStoreUtilities onlineStoreUtilities;
 
     @RequestMapping(value = "/addproduct", method = RequestMethod.GET)
     public ModelAndView addProduct(@Valid RegisterProductBean productForm, BindingResult errors, HttpSession session) throws Exception {
@@ -99,12 +103,21 @@ public class ProductController {
 
 
     @RequestMapping(value = "/productSearch", method = RequestMethod.GET)
-    public ModelAndView productSearch(@RequestParam (required = true) String search, HttpSession session) throws Exception {
+    public ModelAndView productSearch(@RequestParam (required = false) String search, HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("product/searchProduct");
 
+        User user = onlineStoreUtilities.getUserInSession();
+        Order order = onlineStoreUtilities.pendingUserOrder();
+        if(order != null){
+            session.setAttribute("totalOrderQuantity",order.getTotalQuantity());
+            session.setAttribute("totalOrderPrice",order.getTotalPrice());
+        }
+
         if(!StringUtils.isEmpty(search)){
-            List<Product> productSearchList = productDAO.findByNameContainingIgnoreCase(search);
+//            List<Product> productSearchList = productDAO.findByNameContainingIgnoreCase(search);
+            List<Product> productSearchList = productDAO.findByNameContainingIgnoreCaseLike(search);
+
 
             response.addObject("productSearchList",productSearchList);
             response.addObject("searchKey", search);

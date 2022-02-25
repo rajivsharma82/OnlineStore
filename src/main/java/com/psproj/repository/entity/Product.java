@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -54,6 +55,12 @@ public class Product {
     @UpdateTimestamp
     @Column(name = "last_updated")
     private Date lastUpdated;
+
+    @OneToMany(mappedBy = "product")
+    private Set<OrderItem> orderItem;
+
+//    @OneToOne(mappedBy = "product")
+//    private OrderItem orderItem;
 
     @Override
     public String toString() {

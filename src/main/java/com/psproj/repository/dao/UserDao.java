@@ -33,7 +33,7 @@ public interface UserDao extends JpaRepository<User,Long> {
     public User findByUsername(@Param("username") String uname);
 
     //@Query(value="SELECT u.* FROM users u WHERE u.first_name like '%firstName%'", nativeQuery = true)
-    @Query(value="SELECT u.* FROM users u WHERE u.first_name like %:firstName%", nativeQuery = true)
+    @Query(value="SELECT u.* FROM users u WHERE u.firstName like %:firstName%", nativeQuery = true)
     public List<User> findByFirstNameLike(String firstName);
 
     @Query("select ur from UserRole ur where ur.user.id = :userId")

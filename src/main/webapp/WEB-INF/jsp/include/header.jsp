@@ -7,6 +7,8 @@
 <%--        <link rel="stylesheet" href="../../../pub/css/signup.css">--%>
     <link rel="stylesheet" href="../../../pub/css/styles.css">
 
+    <!-- Font Awesome for icons  -->
+    <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <%--    <link rel="stylesheet" href="../css/styles.css" />--%>
 <%--    <script--%>
@@ -48,6 +50,16 @@
             <li><a href="/"> STORE</a></li>
             <li><a href="about.html"> ABOUT</a></li>
             <li><a href="/goToCart"> Cart</a></li>
+
+
+
+            <sec:authorize access="!isAuthenticated()">
+                <i class="fas fa-user"></i> My Account</a>
+            </sec:authorize>
+
+            <sec:authorize access="isAuthenticated()">
+                <i class="fas fa-user"></i> <sec:authentication property="principal.username" /></a>
+            </sec:authorize>
         </ul>
     </nav>
 
@@ -70,6 +82,7 @@
         <td><a href="/login/login">Login</a></td>
         <td> | </td>
         <td><a href="/addproduct">Add Product</a></td>
+
 
 <%--        <td> | </td>--%>
 <%--        <td><a href="/registration-url-path/AdvancedSearchuserList">Advanced Search</a></td>--%>

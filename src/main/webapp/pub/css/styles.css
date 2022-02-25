@@ -293,7 +293,7 @@ html,body{
 }
 
 .cart-item-image{
-    width: 75px;
+    width: 55px;
     height:auto;
     border-radius: 20px;
 }
@@ -344,4 +344,5 @@ html,body{
     display: block;
     margin: 40px auto 80px auto;
     font-size: 1.75em;
+    width: 200px;
 }

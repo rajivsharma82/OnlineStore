@@ -5,10 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b196cdf2-5fde-44ae-9332-54b877dc2b2c" name="Changes" comment="committing the changes for user register page">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/OrderItemDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/CheckoutController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/psproj/utilities/OnlineStoreUtilities.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/cart/checkout.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/cart/checkoutOld.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/controller/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/OrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/OrderItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/OrderItemDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/repository/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/entity/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/psproj/repository/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/psproj/repository/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/cart/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/cart/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/include/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/include/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/product/searchProduct.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/product/searchProduct.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pub/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pub/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/controller/CartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/controller/CartController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/controller/RegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/controller/RegistrationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/repository/dao/OrderItemDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/repository/dao/OrderItemDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/repository/dao/ProductDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/repository/dao/ProductDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/repository/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/repository/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/repository/entity/OrderItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/repository/entity/OrderItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/psproj/repository/entity/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/psproj/repository/entity/Product.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,9 +100,9 @@
       <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/product" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.psproj.controller" />
       <recent name="com.psproj.repository.dao" />
       <recent name="com.psproj.repository.entity" />
-      <recent name="com.psproj.controller" />
       <recent name="com.psproj.form" />
       <recent name="com.psproj.config" />
     </key>
@@ -118,7 +141,7 @@
       <workItem from="1644438249443" duration="20148000" />
       <workItem from="1644711594819" duration="10245000" />
       <workItem from="1644972945487" duration="104208000" />
-      <workItem from="1645490906370" duration="18203000" />
+      <workItem from="1645490906370" duration="100890000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1644286942726</created>
@@ -214,28 +237,63 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/ProductController.java</url>
-          <line>51</line>
+          <line>55</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/ProductController.java</url>
-          <line>91</line>
+          <line>95</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java</url>
-          <line>50</line>
+          <line>69</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java</url>
-          <line>113</line>
+          <line>173</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java</url>
-          <line>72</line>
+          <line>94</line>
           <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java</url>
+          <line>178</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java</url>
+          <line>301</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java</url>
+          <line>330</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/psproj/controller/CartController.java</url>
+          <line>252</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

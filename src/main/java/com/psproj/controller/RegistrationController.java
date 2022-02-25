@@ -100,26 +100,26 @@ public class RegistrationController {
 
         return response;
     }
-
-    @RequestMapping(value = "/userSearch", method = RequestMethod.GET)
-    public ModelAndView userSearch(@RequestParam (required = false) String search ) throws Exception {
-        ModelAndView response = new ModelAndView();
-        response.setViewName("user/userSearch");
-
-        if(!StringUtils.isEmpty(search)){
-            List<User> userSearchList = userDao.findByFirstName(search);
-
-            response.addObject("userSearchList",userSearchList);
-            response.addObject("searchKey", search);
-
-            for(User user: userSearchList){
-                System.out.println(user);
-            }
-
-        }
-
-        return response;
-    }
+//
+//    @RequestMapping(value = "/userSearch", method = RequestMethod.GET)
+//    public ModelAndView userSearch(@RequestParam (required = false) String search ) throws Exception {
+//        ModelAndView response = new ModelAndView();
+//        response.setViewName("user/userSearch");
+//
+//        if(!StringUtils.isEmpty(search)){
+//            List<User> userSearchList = userDao.findByFirstName(search);
+//
+//            response.addObject("userSearchList",userSearchList);
+//            response.addObject("searchKey", search);
+//
+//            for(User user: userSearchList){
+//                System.out.println(user);
+//            }
+//
+//        }
+//
+//        return response;
+//    }
 
 
 }

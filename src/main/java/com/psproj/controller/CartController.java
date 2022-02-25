@@ -5,8 +5,10 @@ import com.psproj.repository.dao.*;
 import com.psproj.repository.entity.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,45 +42,64 @@ public class CartController {
 
     //Create Product Controller which will display the Product form to add Product in DB
 
-    List<String> userCartList = new ArrayList<>();
+    List<Integer> userCartList = new ArrayList<>();
+    Long orderIdInSession;
+    int userIdInSession=0;
 
-    @RequestMapping(value = "/addToSessionCart", method = RequestMethod.POST)
-    public ModelAndView addToSessionCart(HttpServletRequest request, HttpSession session) throws Exception {
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @RequestMapping(value = "/addToSessionCart", method = RequestMethod.GET)
+    public ModelAndView addToSessionCart(@RequestParam (required = false) Integer id, @RequestParam (required = false) String searchKey, HttpServletRequest request, HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
-        String str = request.getReader().lines().collect(Collectors.joining());
-
-        String strArr[] = str.split("=");
-        String prodId = strArr[1];
-        System.out.println(prodId);
-        userCartList.add(prodId);
-
-        // set the total number of cart List size this would reflect the total number of cart items
-        session.setAttribute("cartInfo", userCartList.size() );
-
-        int userIdInSession=0;
-
+        int productId = id;
         // Get user id in session by unique user name
         User userInSession = getUserInSession();
         if(userInSession != null){
             userIdInSession = userInSession.getId();
+            System.out.println("userIdInSession " + userIdInSession);
+        } else{
+//           response.setViewName("redirect:/login/login");
+            //response.setViewName("login/login");
+            System.out.println("userIdInSession --- default user anonymous  " + userIdInSession);
+//            return response;
+            //System.out.println("userIdInSession --- default user anonymous" + userIdInSession);
         }
+
+//        String str = request.getReader().lines().collect(Collectors.joining());
+//
+//        String strArr[] = str.split("=");
+//        String prodId = strArr[1];
+        System.out.println("product id added to cart" + productId);
+        userCartList.add(productId);
+
+        // set the total number of cart List size this would reflect the total number of cart items
+//        session.setAttribute("cartInfo", userCartList.size() );
+//
+//        response.addObject("cartSize", userCartList.size());
+
 
         // ordered product details
         // Question - Shall we get the Optional Product List or use the get() ??
-        Product  product =  productDAO.findById(Long.parseLong(prodId)).get();
+        Product  product =  productDAO.findById((long) productId).get();
 
         // Create the Order table data
         //Step - Check if any pending order exists for the user in session (in Order table).
         Order ord = new Order();
-        List<Order> orderExisting = orderDao.findByUserIdAndStatus(30,"pending");
-        if(orderExisting != null && orderExisting.size() > 0){
-            System.out.println("order existing" + orderExisting);
-            ord = orderExisting.get(0);
+        List<Order> userOrder;
+        if(userIdInSession > 0){
+            userOrder = orderDao.findByUserIdAndStatus(userIdInSession,"pending");
+            //System.out.println("user id by id and status is " + userOrder.get(0).getId());
+        } else{
+            userOrder = orderDao.findByUserIdAndStatus(30,"pending");
+            System.out.println(" taking the hardcoded value of user id 30 ");
+        }
+
+        // FInd if the order is existing (with pending status for this user) or need to create a new order
+        if(userOrder != null && userOrder.size() > 0){
+            System.out.println("order existing" + userOrder);
+            ord = userOrder.get(0);
         }else{
-
-
             System.out.println("no record found");
-            ord.setUser(userDao.findById(30));
+            ord.setUser(userDao.findById(userIdInSession));
             ord.setStatus("pending");
             orderDao.save(ord);
             System.out.println(ord.toString());
@@ -87,7 +108,8 @@ public class CartController {
         // Add the order Item - check if order Item for the same order id and product id already existing
         //if yes then increment the quantity other wise insert a new record with the new product id.
         OrderItem orderItemCart = new OrderItem();
-        List<OrderItem> orderItems = orderItemDao.findByOrderIdAndProductId(ord.getId(), product.getId());
+        //List<OrderItem> orderItems = orderItemDao.findByOrderIdAndProductId(ord.getId(), product.getId());
+        List<OrderItem> orderItems = orderItemDao.findByOrderIdAndProductId(ord.getId(), product);
         if(orderItems != null && orderItems.size() > 0){
              orderItemCart = orderItems.get(0);
              orderItemCart.setQuantity(orderItemCart.getQuantity()+1);
@@ -99,23 +121,69 @@ public class CartController {
             orderItemCart.setQuantity(1);
             orderItemCart.setImageUrl(product.getImageUrl());
             orderItemCart.setUnitPrice(product.getUnitPrice());
-            orderItemCart.setProductId(product.getId());
+            orderItemCart.setProduct(product);
             orderItemDao.save(orderItemCart);
-            System.out.println("order item saved" + orderItemCart.toString());
+            System.out.println("order item inserted " + orderItemCart.toString());
         }
 
-        response.setViewName("redirect:/productSearch");
-//        response.setViewName("product/searchProduct");
+        // update the total quantity  and total price of user's order in the order table
+         orderIdInSession = ord.getId();
+        Double totalOrderPrice=0d;
+        Integer totalOrderQuantity=0;
+
+        List<OrderItem> orderItemList = orderItemDao.findByOrderId(orderIdInSession);
+        for(OrderItem orderItem : orderItemList){
+            totalOrderPrice += orderItem.getUnitPrice().doubleValue() * orderItem.getQuantity();
+            totalOrderQuantity += orderItem.getQuantity();
+        }
+        System.out.println("total order price " + totalOrderPrice);
+        System.out.println("total order quantity " + totalOrderQuantity);
+
+        // save the total price and quantity to order table
+        ord.setTotalPrice(BigDecimal.valueOf(totalOrderPrice));
+        ord.setTotalQuantity(totalOrderQuantity);
+        orderDao.save(ord);
+
+        session.setAttribute("totalOrderQuantity",totalOrderQuantity);
+        session.setAttribute("totalOrderPrice",totalOrderPrice);
+
+        System.out.println("total price and total quantity saved in order " + ord.toString());
+
+
+        // response.addObject("searchKey", searchKey);
+        response.setViewName("redirect:/productSearch?search=" + searchKey);
+      //response.setViewName("product/searchProduct");
         return response;
     }
 
+
+
     public User getUserInSession(){
+
+        //Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+//        if (principal instanceof UserDetails) {
+//            String username = ((UserDetails)principal).getUsername();
+//            System.out.println("userdetails if loop " + username);
+//        } else {
+//            String username = principal.toString();
+//            System.out.println("userdetails else loop " + username);
+//        }
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
-        List<User> userList = userDao.findByFirstName(currentUserName);
+        System.out.println(" currentUserName value by getName " + currentUserName);
+        User user = userDao.findByUsername(currentUserName);
+        System.out.println(" user  " + user);
+//
+//        User currentUserName1 =  (User)authentication.getPrincipal();
+//        System.out.println("current user name as principal" + currentUserName1.toString());
+//        List<User> userList = userDao.findByFirstName(currentUserName);
+
+
         //int userId = userList.get(0).getId();
-        if(userList != null && userList.size() > 0){
-            return userList.get(0);
+        if(user != null){
+            return user;
         }
         return null;
     }
@@ -125,14 +193,147 @@ public class CartController {
     // inside controller - create a list (user Cart)
     // when user is calling add ot session cart - add the name | price | image to this list as a string
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @RequestMapping(value = { "/goToCart" }, method = RequestMethod.GET)
     public ModelAndView index(HttpServletRequest request, HttpSession session) throws Exception {
+        List<OrderItem> orderItemList = new ArrayList<>();
+        Double totalOrderPrice=0d;
+
+
         ModelAndView response = new ModelAndView();
         response.setViewName("cart/cart");
+
+        //Find the user Id in session
+        User userInSession = getUserInSession();
+        if(userInSession != null){
+            userIdInSession = userInSession.getId();
+            System.out.println("userIdInSession " + userIdInSession);
+        } else{
+            System.out.println("userIdInSession --- default user anonymous  " + userIdInSession);
+        }
+
+        // Get the Order Id with pending status for the user in session
+        Order ord = new Order();
+        List<Order> userOrder;
+        if(userIdInSession > 0){
+            userOrder = orderDao.findByUserIdAndStatus(userIdInSession,"pending");
+
+
+            //System.out.println("user id by id and status is " + userOrder.get(0).getId());
+            if(userOrder != null && userOrder.size() > 0){
+
+                System.out.println("order existing" + userOrder);
+
+                ord = userOrder.get(0);
+                totalOrderPrice = userOrder.get(0).getTotalPrice().doubleValue();
+
+                orderIdInSession = ord.getId(); // Get the order id with status pending for the user in session
+                 orderItemList = orderItemDao.findByOrderId(orderIdInSession);
+            }
+
+        }
+
+        response.addObject("orderItemListKey", orderItemList);
+        response.addObject("orderIdInSession", orderIdInSession);
+        response.addObject("totalOrderPrice",totalOrderPrice);
+
 
         return response;
     }
 
 
+
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @RequestMapping(value = "/deleteItemFromCart", method = RequestMethod.GET)
+    public ModelAndView deleteFromCart(@RequestParam (required = false) Integer id, @RequestParam (required = false) Long orderId, HttpServletRequest request, HttpSession session) throws Exception {
+        ModelAndView response = new ModelAndView();
+        int cartItemId = id;
+        Long cartItemOrderId = orderId;
+
+        orderItemDao.deleteById(id.longValue());
+
+        Order ord = orderDao.findById(orderId).get();
+
+
+        Double totalOrderPrice=0d;
+        Integer totalOrderQuantity=0;
+
+        List<OrderItem> orderItemList = orderItemDao.findByOrderId((long) cartItemOrderId);
+        for(OrderItem orderItem : orderItemList){
+            totalOrderPrice += orderItem.getUnitPrice().doubleValue() * orderItem.getQuantity();
+            totalOrderQuantity += orderItem.getQuantity();
+        }
+        System.out.println("total order price " + totalOrderPrice);
+        System.out.println("total order quantity " + totalOrderQuantity);
+
+        // save the total price and quantity to order table
+        if(totalOrderPrice > 0 && totalOrderQuantity > 0){
+            ord.setTotalPrice(BigDecimal.valueOf(totalOrderPrice));
+            ord.setTotalQuantity(totalOrderQuantity);
+            orderDao.save(ord);
+
+        } else{
+            orderDao.deleteById(cartItemOrderId);
+        }
+//
+            session.setAttribute("totalOrderQuantity",totalOrderQuantity);
+            session.setAttribute("totalOrderPrice", totalOrderPrice);
+
+
+        System.out.println("total price and total quantity saved in order " + ord.toString());
+//        response.addObject("totalOrderPrice", totalOrderPrice);
+//        response.addObject("totalOrderQuantity", totalOrderQuantity);
+
+        response.setViewName("redirect:/goToCart");
+
+        return response;
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @RequestMapping(value = "/updateItemFromCart", method = RequestMethod.GET)
+    public ModelAndView updateItemFromCart(@RequestParam (required = true) String cartItemId,
+                                           @RequestParam (required = true) String quantityField,
+                                           @RequestParam (required = true) String cartItemOrderId,
+                                           HttpServletRequest request, HttpSession session) throws Exception {
+        ModelAndView response = new ModelAndView();
+        Long cartItemIdVal = Long.parseLong(cartItemId);
+        int cartItemQuantityVal = Integer.parseInt(quantityField);
+        Long cartItemOrderIdVal = Long.parseLong(cartItemOrderId);
+
+
+        OrderItem orderItemDaoRec = orderItemDao.findById(cartItemIdVal.longValue()).get();
+        orderItemDaoRec.setQuantity(cartItemQuantityVal);
+        orderItemDao.save(orderItemDaoRec);
+
+
+        Order ord = orderDao.findById(cartItemOrderIdVal).get();
+        Double totalOrderPrice=0d;
+        Integer totalOrderQuantity=0;
+
+        List<OrderItem> orderItemList = orderItemDao.findByOrderId(cartItemOrderIdVal);
+        for(OrderItem orderItem : orderItemList){
+            totalOrderPrice += orderItem.getUnitPrice().doubleValue() * orderItem.getQuantity();
+            totalOrderQuantity += orderItem.getQuantity();
+        }
+//        System.out.println("total order price " + totalOrderPrice);
+//        System.out.println("total order quantity " + totalOrderQuantity);
+
+        // save the total price and quantity to order table
+        if(totalOrderPrice > 0 && totalOrderQuantity > 0){
+            ord.setTotalPrice(BigDecimal.valueOf(totalOrderPrice));
+            ord.setTotalQuantity(totalOrderQuantity);
+            orderDao.save(ord);
+
+        }
+
+
+//
+//        System.out.println(cartItemIdVal);
+//        System.out.println(cartItemQuantityVal);
+
+        response.setViewName("redirect:/goToCart");
+
+        return response;
+    }
 
 }

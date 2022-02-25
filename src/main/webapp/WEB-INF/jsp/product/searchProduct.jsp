@@ -22,12 +22,13 @@
 
 
         $.ajax({
-            type: "post",
+            type: "GET",
             url: "/addToSessionCart",
             data: "id=" + val1,
             // data: "name=" + val1 + "&imageUrl="+ val2 + "&price=" + val3,
             success: function(msg){
-                //
+                // window.location.href= "addproduct";
+                 window.location.href= "/productSearch?search=${searchKey}";
             }
         });
 
@@ -58,13 +59,14 @@
         <tr>
             <td>
                 <input type="text" name="search" style=" width: 200px ;margin-left: 300px"
-                       placeholder="Search Product">
+                       placeholder="Search Product" value="${searchKey}">
             </td>
             <td>
                 <button type="submit">Search</button>
             </td>
             <td>
                 Cart:
+<%--                <span class="badge">${cartSize}</span>--%>
             </td>
 
             <td>
@@ -79,9 +81,9 @@
 <%--                    }%>--%>
 
             <%
-                if(session.getAttribute("cartInfo") != null)
+                if(session.getAttribute("totalOrderQuantity") != null)
                 {
-                    out.print(session.getAttribute("cartInfo").toString());
+                    out.print(session.getAttribute("totalOrderQuantity").toString());
 //                    System.out.println("inside the cart info if condition ");
 
                 }
@@ -123,9 +125,12 @@
 <%--                <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onClick="updateCart( ${product.name}, ${product.imageUrl}, ${product.unitPrice} )">--%>
 
 <%--                    <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onclick="testBtnClick(`${product.id}`,`${product.name}`, `${product.imageUrl}`, `${product.unitPrice}`)">--%>
-                        <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onclick="testBtnClick(`${product.id}`)">
-                        Add To Cart
-                    </button>
+<%--                        <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onclick="testBtnClick(`${product.id}`)">--%>
+                            <a class="btn btn-primary shop-item-button"  role="button" href="/addToSessionCart?id=${product.id}&searchKey=${searchKey}">
+                            Add To Cart </a>
+<%--                    </button>--%>
+
+
                 <%--                <!--  <td><a href="/registration-url-path/register?id=${productid}"> Edit </a>  </td> -->--%>
                 <!-- backend controller - check if that prod exist and check if i have qty >0 and add to order and write to DB -->
                 <!-- if user remove from cart then remove from DB ... user, product , order , order_product  -->

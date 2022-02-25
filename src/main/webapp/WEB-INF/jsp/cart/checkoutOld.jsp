@@ -23,7 +23,77 @@
 
 <body>
 
-<section class="container content-section">
+
+<!-- Form  -->
+
+<form id="form"  method="GET" action="/addProductSubmit"><br>
+
+    <div id="first" style="float:left">
+    <table cellpadding="5">
+        <tr>
+            <td>Shipping Address:</td>
+            <td> <input type="text" name ="address"  required ></td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td> <input type="text" name ="city"  required></td>
+        </tr>
+
+        <tr>
+            <td>State:</td>
+            <td> <input type="text" name ="state"  required></td>
+        </tr>
+        <tr>
+            <td>Zip Code:</td>
+            <td> <input type="text" name ="zipcode"  required></td>
+        </tr>
+
+
+
+
+    </table>
+        </div>
+
+    <div id="second" style="float:right;"  >
+        <table cellpadding="5">
+            <tr>
+                <td>Shipping Address:</td>
+                <td> <input type="text" name ="address"  required ></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td> <input type="text" name ="city"  required></td>
+            </tr>
+
+            <tr>
+                <td>State:</td>
+                <td> <input type="text" name ="state"  required></td>
+            </tr>
+            <tr>
+                <td>Zip Code:</td>
+                <td> <input type="text" name ="zipcode"  required></td>
+            </tr>
+
+
+
+
+        </table>
+    </div>
+<%--<header class="main-header">--%>
+<%--    <nav class="main-nav nav">--%>
+<%--        <ul>--%>
+<%--            <li><a href="index.html"> HOME</a></li>--%>
+<%--            <li><a href="store.html"> STORE</a></li>--%>
+<%--            <li><a href="about.html"> ABOUT</a></li>--%>
+<%--            <li><a href="cart.html"> Cart</a></li>--%>
+<%--        </ul>--%>
+<%--    </nav>--%>
+
+<%--    <h1 class="band-name band-name-large">The Corrs</h1>--%>
+<%--</header>--%>
+
+
+<section class="container content-section" style="margin-top: 200px">
     <h2 class="section-header">CART</h2>
     <div class="cart-row">
         <span class="cart-item cart-header cart-column">ITEM</span>
@@ -49,23 +119,17 @@
           <div class="cart-row">
 
             <div class="cart-item cart-column">
-              <img class="cart-item-image" src= "${cartItem.product.imageUrl}"  width="20" height="20"/>
+              <img class="cart-item-image" width="10" height="10" src= "${cartItem.product.imageUrl}" />
               <span class="cart-item-title">${cartItem.product.name}</span>
             </div>
             <span class="cart-price cart-column">$ ${cartItem.unitPrice}</span>
             <div class="cart-quantity cart-column">
-              <form method="GET" action="/updateItemFromCart">
+
                   <input type="hidden" name = "cartItemId"   value=${cartItem.id} />
                   <input type="hidden" name = "cartItemOrderId"   value=${cartItem.order.id} />
                 <input class="cart-quantity-input" type="text" id = "id-${cartItem.id}" name = "quantityField" value=${cartItem.quantity} />
-<%--              <button class="btn btn-danger " type="button">REMOVE</button>--%>
-<%--                <a class="btn btn-danger"  role="button" href="/updateItemFromCart?id=${cartItem.id}&quantity=" + getCartRowProductQuantity(`id-${cartItem.id}`)>--%>
-<%--                    <a class="btn btn-danger"  type="submit" role="button" > UPDATE </a>--%>
-                  <button class="btn btn-danger"  type="submit">UPDATE</button>
-<%--                  <a class="btn "  role="button" href="/updateItemFromCart?id=${cartItem.id}">--%>
-                  <a class="btn btn-danger"  role="button" href="/deleteItemFromCart?id=${cartItem.id}&orderId=${cartItem.order.id}">
-                      REMOVE </a>
-              </form>
+<%--
+
 <%--                <a class="btn btn-danger"  role="button" href="/deleteItemFromCart?id=${cartItem.id}&orderId=${cartItem.order.id}">--%>
 <%--                    REMOVE </a>--%>
 
@@ -83,14 +147,13 @@
         <span class="cart-total-price">${totalOrderPrice}</span>
     </div>
 
-    <a button class= "btn btn-primary btn-purchase" type="button" href="/checkOutCart?orderId=${orderIdInSession}">
-        PURCHASE </a>
-<%--    How to get the order id from the list ${orderItemListKey} --%>
-
-
-<%--    <button class= "btn btn-primary btn-purchase" role="button" href="/checkOutCart?orderId=${cartItem.order.id}">PURCHASE</button>--%>
+<%--    <button class= "btn btn-primary btn-purchase" type="button">PURCHASE</button>--%>
 
 </section>
+
+    <button class= "btn btn-primary btn-purchase" type="submit">PURCHASE</button>
+<%--    <button type="submit">Submit</button>--%>
+</form>
 
 <footer class="main-footer">
     <div class="container main-footer-container">

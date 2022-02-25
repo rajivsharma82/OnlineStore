@@ -26,8 +26,10 @@ public class OrderItem {
     @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "product_id")
-    private Long productId;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+//    private Long productId;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
