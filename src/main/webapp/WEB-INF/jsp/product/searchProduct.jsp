@@ -104,6 +104,7 @@
 <%--                    }%>--%>
 
             </td>
+
         </tr>
     </table>
 </form>
@@ -126,7 +127,7 @@
 
 <%--                    <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onclick="testBtnClick(`${product.id}`,`${product.name}`, `${product.imageUrl}`, `${product.unitPrice}`)">--%>
 <%--                        <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onclick="testBtnClick(`${product.id}`)">--%>
-                            <a class="btn btn-primary shop-item-button"  role="button" href="/addToSessionCart?id=${product.id}&searchKey=${searchKey}">
+                            <a class="btn  btn-primary btn-sm "  role="button" href="/addToSessionCart?id=${product.id}&searchKey=${searchKey}">
                             Add To Cart </a>
 <%--                    </button>--%>
 

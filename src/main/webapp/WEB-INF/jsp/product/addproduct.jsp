@@ -1,9 +1,9 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../include/header.jsp" />
 
-
+<div style="margin-top: 2rem ; margin-left: 18rem; ">
 <!-- Form  -->
-<form id="form"  method="GET" action="/addProductSubmit"><br>
+<form id="form"  method="GET" action="/admin/addProductSubmit"><br>
 
     <table cellpadding="5">
         <tr>
@@ -25,7 +25,8 @@
         </tr>
         <tr>
             <td>Unit Price:</td>
-            <td> <input type="number" name ="unitPrice" value="${ProductFormBeanKey.unitPrice}" required ></td>
+            <td> <input type="number" name ="unitPrice" value="${ProductFormBeanKey.unitPrice}"
+                        placeholder="1.00" step="0.01" min="0" max="100" required ></td>
         </tr>
         <tr>
             <td>Image Url:</td>
@@ -43,7 +44,18 @@
 
 
     </table>
-    <button type="submit">Submit</button>
+    <button type="submit" class="addproduct" onclick="addProdfun()">Submit</button>
+
 </form>
+
+</div>
+
+<script>
+    document.getElementsByClassName("addproduct").addEventListener("onclick", addProdfun);
+
+    function addProdfun() {
+        alert("The Product is added into the system");
+    }
+</script>
 
 <jsp:include page="../include/footer.jsp" />

@@ -34,24 +34,26 @@ body{
     align-items: center;
     border-radius: 10px;
     box-shadow: 0 5px 30px 10px rgba(0,0,0,0.4);
+
+
 }
 
 /* Form */
 
-form{
+.container-login form, .container-signup form{
     width: 90%;
 }
 
-.form-group{
+.container-login .form-group, .container-signup .form-group{
     height: 65px;
 }
 
-label{
+.container-login label, .container-signup label{
     position: relative;
     bottom: 3px;
 }
 
-input{
+.container-login input, .container-signup input{
     width: 100%;
     height: 34px;
     padding: 5px;
@@ -61,15 +63,15 @@ input{
     box-sizing: border-box;
 }
 
-input:valid{
+.container-login input:valid, .container-signup input:valid{
     border: 2px solid green;
 }
 
-input:invalid{
+.container-login input:invalid, .container-signup input:invalid{
     border: 2px solid red;
 }
 
-button{
+.container-login button, .container-signup button{
     cursor: pointer;
     color: white;
     background-color: black;
@@ -83,21 +85,21 @@ button{
     margin-top: 20px;
 }
 
-button:hover{
+.container-login button:hover, .container-signup button:hover{
     filter: brightness(200%);
     background-color: rgba(22,33,22,0.9);
 }
 
-button:focus{
+.container-login button:focus, .container-signup button:focus{
     outline: none;
 }
 
-.message-container{
+.container-login .message-container, .container-signup .message-container{
     border:1px solid black;
     border-radius: 5px;
     width: 90%;
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    columns: black;
+    /*columns: ;*/
 }

@@ -61,9 +61,9 @@
 <%--              <button class="btn btn-danger " type="button">REMOVE</button>--%>
 <%--                <a class="btn btn-danger"  role="button" href="/updateItemFromCart?id=${cartItem.id}&quantity=" + getCartRowProductQuantity(`id-${cartItem.id}`)>--%>
 <%--                    <a class="btn btn-danger"  type="submit" role="button" > UPDATE </a>--%>
-                  <button class="btn btn-danger"  type="submit">UPDATE</button>
+                  <button class="btn btn-danger btn-sm"  type="submit">UPDATE</button>
 <%--                  <a class="btn "  role="button" href="/updateItemFromCart?id=${cartItem.id}">--%>
-                  <a class="btn btn-danger"  role="button" href="/deleteItemFromCart?id=${cartItem.id}&orderId=${cartItem.order.id}">
+                  <a class="btn btn-danger btn-sm"  role="button" href="/deleteItemFromCart?id=${cartItem.id}&orderId=${cartItem.order.id}">
                       REMOVE </a>
               </form>
 <%--                <a class="btn btn-danger"  role="button" href="/deleteItemFromCart?id=${cartItem.id}&orderId=${cartItem.order.id}">--%>

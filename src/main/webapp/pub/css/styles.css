@@ -49,6 +49,7 @@ html,body{
     background-image: url("../Images/HeaderBackground.jpg");
     background-size: cover;
     padding-bottom: 30px;
+    min-height: 2rem;
 }
 
 .main-header1{
@@ -66,7 +67,7 @@ html,body{
     font-family: sans-serif;
     font-weight: normal;
     font-style: normal;
-    color: white;
+    color: #000000;
 }
 
 .band-name-large{
@@ -100,30 +101,6 @@ html,body{
     border-radius: 50%;
 }
 
-
-.main-footer{
-    background-color: lightblue;
-    color:white;
-    padding: 0.25 0;
-
-
-}
-
-.main-footer-container{
-    display: flex;
-    align-items: center;
-
-}
-
-.main-footer-container ul{
-    flex-grow:1;
-    text-align: end;
-
-}
-
-.footer-nav li{
-    padding: 0 .5em;
-}
 
 .btn{
     text-align: center;
@@ -345,4 +322,44 @@ html,body{
     margin: 40px auto 80px auto;
     font-size: 1.75em;
     width: 200px;
+}
+
+.navbar-margin{
+    margin: auto;
+}
+
+.btn-auth-margin {
+    margin-left: 1rem;
+}
+
+.page-footer {
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+}
+
+
+.main-footer{
+    background-color: lightblue;
+    color:white;
+    padding: 0.25 0;
+
+
+}
+
+.main-footer-container{
+    display: flex;
+    align-items: center;
+
+}
+
+.main-footer-container ul{
+    flex-grow:1;
+    text-align: end;
+
+}
+
+.footer-nav li{
+    padding: 0 .5em;
 }

@@ -88,38 +88,12 @@ public class RegistrationController {
 
         }
 
-        // First i will get object of RegisterFOrmBeanClass
-        // Form.setName(get the value from the JSP form)
+        // Get object of RegisterFOrmBeanClass, Form.setName(get the value from the JSP form)
         // do above for all the form fields
-
-        // Create an object of UserDAO
-        // DAO.Save(Form newUser ) -- i will be having
+        // Create an object of UserDAO, DAO.Save(Form newUser ) -- i will be having
         // Spring Boot , JPA - @Entity , Front end JSP
-
         // FIx the condition-when there is no errors in form only then save to DB
 
         return response;
     }
-//
-//    @RequestMapping(value = "/userSearch", method = RequestMethod.GET)
-//    public ModelAndView userSearch(@RequestParam (required = false) String search ) throws Exception {
-//        ModelAndView response = new ModelAndView();
-//        response.setViewName("user/userSearch");
-//
-//        if(!StringUtils.isEmpty(search)){
-//            List<User> userSearchList = userDao.findByFirstName(search);
-//
-//            response.addObject("userSearchList",userSearchList);
-//            response.addObject("searchKey", search);
-//
-//            for(User user: userSearchList){
-//                System.out.println(user);
-//            }
-//
-//        }
-//
-//        return response;
-//    }
-
-
 }

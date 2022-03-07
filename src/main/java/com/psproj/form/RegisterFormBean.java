@@ -1,5 +1,6 @@
 package com.psproj.form;
 
+import com.psproj.validation.TwoFieldsAreEqual;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
@@ -13,6 +14,8 @@ import java.util.List;
 
 @Getter
 @Setter
+@TwoFieldsAreEqual(fieldOneName = "confirmPassword", fieldTwoName = "password",
+        message = "Password and Confirm Password values must be the same.")
 public class RegisterFormBean {
 
     @NotEmpty(message = "User name is required")

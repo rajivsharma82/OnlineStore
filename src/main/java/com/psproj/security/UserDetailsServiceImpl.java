@@ -38,22 +38,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			throw new UsernameNotFoundException("Username '" + username + "' not found in database");
 		}
 
-		// we do not need to do anything with these flags for the project
-		// check the account status
+
 		boolean accountIsEnabled = true;
-		//accountIsEnabled = user.isActive();
+
 
 		// spring security configs
 		boolean accountNonExpired = true;
 
-		//if ( user.getExpirationDate().before(new Date()))
+
 		boolean credentialsNonExpired = true;
 
 		boolean accountNonLocked = true;
 
-		// setup user roles
-		// List<Permission> permissions = userDao.getPermissionsByEmail(username);
-		// Collection<? extends GrantedAuthority> springRoles = buildGrantAuthorities(permissions);
 		List<UserRole> userRoles = userDao.getUserRoles(user.getId());
 		Collection<? extends GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
 
@@ -61,24 +57,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				accountNonExpired, credentialsNonExpired, accountNonLocked, springRoles);
 	}
 
-//	private Collection<? extends GrantedAuthority> buildGrantAuthorities(List<Permission> permissions) {
-//		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-//		for (Permission permission : permissions) {
-//			authorities.add(new SimpleGrantedAuthority(permission.getName()));
-//		}
-//
-//		return authorities;
-//	}
-
 	private Collection<? extends GrantedAuthority> buildGrantAuthorities(List<UserRole> userRoles) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
 		for (UserRole role : userRoles) {
 			authorities.add(new SimpleGrantedAuthority(role.getUserRole().toString()));
 		}
-
-		// always add the user role
-		//authorities.add(new SimpleGrantedAuthority(UserRoleEnum.USER.toString()));
 
 		return authorities;
 	}

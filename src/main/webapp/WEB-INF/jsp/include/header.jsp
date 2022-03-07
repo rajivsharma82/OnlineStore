@@ -7,6 +7,9 @@
 <%--        <link rel="stylesheet" href="../../../pub/css/signup.css">--%>
     <link rel="stylesheet" href="../../../pub/css/styles.css">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <!-- Font Awesome for icons  -->
     <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -16,7 +19,7 @@
 <%--            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="--%>
 <%--            crossorigin="anonymous"></script>--%>
 
-<%--    <!-- Bootstrap CSS -->--%>
+<%--&lt;%&ndash;    <!-- Bootstrap CSS -->&ndash;%&gt;--%>
 <%--    <link rel="stylesheet"--%>
 <%--          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"--%>
 <%--          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"--%>
@@ -38,56 +41,120 @@
 <%--            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"--%>
 <%--            crossorigin="anonymous"></script>--%>
 
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
 
 </head>
 <body>
 <header class="main-header">
-    <nav class="main-nav nav">
-        <ul>
-            <li><a href=""> HOME</a></li>
-            <li><a href="/"> STORE</a></li>
-            <li><a href="about.html"> ABOUT</a></li>
-            <li><a href="/goToCart"> Cart</a></li>
+
+    <nav class="navbar navbar-expand-lg navbar-dark" >
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">The Online Store</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-margin">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+
+
+                    <sec:authorize access="hasAnyAuthority('ADMIN','USER')">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                My Account
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/orderHistory">Orders</a></li>
+                                <li><a class="dropdown-item" href="/registration-url-path/editUser">Edit Account</a></li>
+                            </ul>
+
+
+                        </li>
+                    </sec:authorize>
+
+                    <sec:authorize access="hasAuthority('ADMIN')">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+<%--                            <li><a class="dropdown-item" href="/addproduct">Manage Product</a></li>--%>
+                            <li><a class="dropdown-item" href="/admin/manageProduct">Manage Product</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/registration-url-path/manageUser">Manage Users</a></li>
+                        </ul>
+                    </li>
+                    </sec:authorize>
+
+                    <sec:authorize access="hasAnyAuthority('ADMIN','USER')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/goToCart">Cart</a>
+                    </li>
+                    </sec:authorize>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contactus">Contact us</a>
+                    </li>
+
+
+                </ul>
+                <div>
+
+                    <sec:authorize access="isAuthenticated()">
+                        <i class="fas fa-user"></i> <sec:authentication property="principal.username" /></a>
+                    </sec:authorize>
+
+                    <sec:authorize access="isAuthenticated()">
+                        <a class="btn btn-outline-success btn-auth-margin" href="/login/logout">Logout</a>
+                    </sec:authorize>
+
+                    <sec:authorize access="!isAuthenticated()">
+                        <a class="btn btn-outline-success btn-auth-margin" href="/login/login">Login</a>
+                    </sec:authorize>
 
 
 
-            <sec:authorize access="!isAuthenticated()">
-                <i class="fas fa-user"></i> My Account</a>
-            </sec:authorize>
+                </div>
 
-            <sec:authorize access="isAuthenticated()">
-                <i class="fas fa-user"></i> <sec:authentication property="principal.username" /></a>
-            </sec:authorize>
-        </ul>
+            </div>
+        </div>
     </nav>
 
-    <h1 class="band-name band-name-large">The Online Store</h1>
 </header>
 
-<!-- implement any html you need to show on every page as a header here -->
-<table>
+
+<%--<table>--%>
 
 
-    <tr>
-        <sec:authorize access="isAuthenticated()">
-        <td><a href="/login/logout">Logout</a></td>
-        </sec:authorize>
-        <td> | </td>
-        <td><a href="/registration-url-path/register">User Registration</a></td>
-        <td> | </td>
-        <td><a href="/registration-url-path/userSearch">Search User</a></td>
-        <td> | </td>
-        <td><a href="/login/login">Login</a></td>
-        <td> | </td>
-        <td><a href="/addproduct">Add Product</a></td>
-
-
+<%--    <tr>--%>
+<%--        <sec:authorize access="isAuthenticated()">--%>
+<%--        <td><a href="/login/logout">Logout</a></td>--%>
+<%--        </sec:authorize>--%>
 <%--        <td> | </td>--%>
-<%--        <td><a href="/registration-url-path/AdvancedSearchuserList">Advanced Search</a></td>--%>
-    </tr>
+<%--        <td><a href="/registration-url-path/register">User Registration</a></td>--%>
+<%--        <td> | </td>--%>
+<%--        <td><a href="/registration-url-path/userSearch">Search User</a></td>--%>
+<%--        <td> | </td>--%>
+<%--        <td><a href="/login/login">Login</a></td>--%>
+<%--        <td> | </td>--%>
+<%--        <td><a href="/addproduct">Add Product</a></td>--%>
+<%--        <td> | </td>--%>
+<%--        <td><a href="/orderHistory">Order History</a></td>--%>
 
-</table>
-<hr>
-<div class="container">
+
+
+<%--&lt;%&ndash;        <td> | </td>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        <td><a href="/registration-url-path/AdvancedSearchuserList">Advanced Search</a></td>&ndash;%&gt;--%>
+<%--    </tr>--%>
+
+<%--</table>--%>
+<%--<hr>--%>
+<%--<div class="container">--%>

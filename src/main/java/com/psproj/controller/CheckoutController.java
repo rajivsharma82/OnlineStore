@@ -48,28 +48,13 @@ public class CheckoutController {
 
     public User getUserInSession(){
 
-        //Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-//        if (principal instanceof UserDetails) {
-//            String username = ((UserDetails)principal).getUsername();
-//            System.out.println("userdetails if loop " + username);
-//        } else {
-//            String username = principal.toString();
-//            System.out.println("userdetails else loop " + username);
-//        }
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
         System.out.println(" currentUserName value by getName " + currentUserName);
         User user = userDao.findByUsername(currentUserName);
         System.out.println(" user  " + user);
 //
-//        User currentUserName1 =  (User)authentication.getPrincipal();
-//        System.out.println("current user name as principal" + currentUserName1.toString());
-//        List<User> userList = userDao.findByFirstName(currentUserName);
 
-
-        //int userId = userList.get(0).getId();
         if(user != null){
             return user;
         }
@@ -77,9 +62,9 @@ public class CheckoutController {
     }
 
 
-// Update the cart information - when user click on add to cart servlet is triggering
+    // Update the cart information - when user click on add to cart servlet is triggering
     // inside controller - create a list (user Cart)
-    // when user is calling add ot session cart - add the name | price | image to this list as a string
+    // when user is calling add to session cart - add the name | price | image to this list as a string
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @RequestMapping(value = { "/checkOutCart" }, method = RequestMethod.GET)
@@ -93,6 +78,7 @@ public class CheckoutController {
 
         //Find the user Id in session
         User userInSession = getUserInSession();
+
         if(userInSession != null){
             userIdInSession = userInSession.getId();
             System.out.println("userIdInSession " + userIdInSession);
@@ -118,11 +104,14 @@ public class CheckoutController {
                 orderIdInSession = ord.getId(); // Get the order id with status pending for the user in session
                  orderItemList = orderItemDao.findByOrderId(orderIdInSession);
             }
-
+            response.addObject("orderIdInSession", orderIdInSession);
+            response.addObject("userIdInSession", userIdInSession);
         }
 
         response.addObject("orderItemListKey", orderItemList);
         response.addObject("totalOrderPrice",totalOrderPrice);
+
+
 
 
         return response;

@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <jsp:include page="include/header.jsp" />
@@ -6,171 +8,220 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-<%--    <link rel="stylesheet" href="styles.css" />--%>
-    <link rel="stylesheet" href="../../../pub/css/styles.css">
+    <%--    <link rel="stylesheet" href="styles.css" />--%>
+<%--    <link rel="stylesheet" href="../../../../pub/css/styles.css">--%>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>The Corrs | Store</title>
+    <title>The Online | Store</title>
 </head>
+
+<script type="text/javascript">
+    function testBtnClick(val1){
+        console.log("inside test button click");
+        console.log(val1 );
+
+
+        $.ajax({
+            type: "GET",
+            url: "/addToSessionCart",
+            data: "id=" + val1,
+            // data: "name=" + val1 + "&imageUrl="+ val2 + "&price=" + val3,
+            success: function(msg){
+                // window.location.href= "addproduct";
+                 window.location.href= "/productSearch?search=${searchKey}";
+            }
+        });
+
+    }
+// From the test button click, call a servlet with the information (product name, price and image url)
+    // implement the servlet controller to add concetenated data inside a List<String>
+    // Also add the list to session variable
+    // create a new scriplet beside the cart variable to print the size of the list
+    // inside the scriplet i can refer session variable and so the size to get the total
+
+    <%--    $(document).ready(function() {--%>
+<%--        $('#cartBtnId').click(function (){--%>
+<%--            console.log("inside click JSP")--%>
+
+<%--&lt;%&ndash;            &lt;%&ndash;%>--%>
+<%--&lt;%&ndash;                out.print(list.size());&ndash;%&gt;--%>
+<%--&lt;%&ndash;          %>&ndash;%&gt;--%>
+
+
+<%--        });--%>
+<%--    });--%>
+</script>
+
 <body>
-<%--<header class="main-header">--%>
-<%--    <nav class="main-nav nav">--%>
-<%--        <ul>--%>
-<%--            <li><a href="index.html"> HOME</a></li>--%>
-<%--            <li><a href="store.html"> STORE</a></li>--%>
-<%--            <li><a href="about.html"> ABOUT</a></li>--%>
-<%--            <li><a href="cart.html"> Cart</a></li>--%>
-<%--        </ul>--%>
-<%--    </nav>--%>
-
-<%--    <h1 class="band-name band-name-large">The Corrs</h1>--%>
-<%--</header>--%>
-
-<form method="get" action="/productSearch">
-<table>
-    <tr>
-        <td>
-            <input type="text" name="search" style=" width: 200px ;margin-left: 300px"
-            placeholder="Search Product">
-        </td>
-        <td>
-            <button type="submit">Search</button>
-        </td>
-    </tr>
-</table>
-</form>
-
-<section class="container content-section">
-    <h2 class="section-header"> Game Console</h2>
-    <div class="shop-items">
-        <div class="shop-item">
-            <span class="shop-item-title"> APP Playstation</span>
-            <img class="shop-item-image" src="../../pub/Images/playstation.jpeg" />
-            <div class="shop-item-details">
-                <span class="shop-item-price">12.99</span>
-                <button class="btn btn-primary shop-item-button" role="button">
-                    Add To Cart
-                </button>
-            </div>
-        </div>
-
-        <div class="shop-item">
-            <span class="shop-item-title">XYZ Controller</span>
-            <img class="shop-item-image" src="../../pub/Images/game_video.jpeg" />
-            <div class="shop-item-details">
-                <span class="shop-item-price">12.99</span>
-                <button class="btn btn-primary shop-item-button" role="button">
-                    Add To Cart
-                </button>
-            </div>
-        </div>
 
 
-        <div class="shop-item">
-            <span class="shop-item-title">XBOX</span>
-            <img class="shop-item-image" src="../../pub/Images/XBOX.jpeg" />
-            <div class="shop-item-details">
-                <span class="shop-item-price">12.99</span>
-                <button class="btn btn-primary shop-item-button" role="button">
-                    Add To Cart
-                </button>
-            </div>
-        </div>
-    </div>
-</section>
+<%--<form method="get" action="/productSearch">--%>
+    <table>
+        <tr>
+
+            <td>
+
+                <div >
+
+                    <div>
+                        <!-- Example single danger button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Category
+                            </button>
+                            <ul class="dropdown-menu">
+<%--                                <li><a class="dropdown-item" href="/productCatSearch?search=BOOKS">BOOKS</a></li>--%>
+                                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=BOOKS">BOOKS</a></li>
+
+<%--                                <li><a class="dropdown-item" href="/productCatSearch?search=TOY">TOY</a></li>--%>
+                                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=TOY">TOY</a></li>
+                                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=MERCH">MERCH</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=GAME">GAME</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+<%--                <form method="get" action="/productSearch">--%>
+<%--                    /showProducts/page?currentPage=1&category=BOOKS--%>
+                <form method="get" action="/showProducts/page">
+                    <td>
+                        <input type="text" name="search" style=" width: 200px ;margin-left: 300px"
+                               placeholder="Search Product" value="${searchKey}">
+
+                        <input type="hidden" name="currentPage" value="1" />
+
+                    </td>
+                    <td>
+                        <button type="submit">Search</button>
+                    </td>
+
+                </form>
+
+            <td>
+
+<%--                Cart1:--%>
+                <div>
+<%--                    <i style="font-size:30px; margin-left: 15rem" class="fa">&#xf07a;</i>--%>
+                    <a class="nav-link" href="/goToCart">
+                        <i style="font-size:30px; margin-left: 10rem" class="fa">&#xf07a;</i>
+                    </a>
+                </div>
+<%--                <span class="badge">${cartSize}</span>--%>
+            </td>
+
+            <td>
+<%--                <%!--%>
+
+<%--                    List<String> list = new ArrayList();--%>
+<%--                    public List<String> updateCart(String name, String image, String price) {--%>
+<%--                        String addToCart = name + "|" + image + "|" + price;--%>
+<%--                        list.add(addToCart);--%>
+<%--                        System.out.println("inside the cart method");--%>
+<%--                        return list;--%>
+<%--                    }%>--%>
+
+            <%
+                if(session.getAttribute("totalOrderQuantity") != null)
+                {
+                    out.print(session.getAttribute("totalOrderQuantity").toString());
+//                    System.out.println("inside the cart info if condition ");
+
+                }
+
+//                out.print("abc");
+
+
+            %>
+
+<%--                <%!--%>
+
+<%--                    List<String> list = new ArrayList();--%>
+<%--                    public List<String> updateCart(String name, String image, String price) {--%>
+<%--                        String addToCart = name + "|" + image + "|" + price;--%>
+<%--                        list.add(addToCart);--%>
+<%--                        System.out.println("inside the cart method");--%>
+<%--                        return list;--%>
+<%--                    }%>--%>
+
+            </td>
+
+
+
+        </tr>
+    </table>
+<%--</form>--%>
+
+
 
 <section class="container content-section">
     <h2 class="section-header">MERCH</h2>
-    <div class="shop-items">
 
-<%--        <!-- <c:forEach var="user" items="${userListKey}"> -->--%>
+    <div class="shop-items">
+        <c:forEach items="${productSearchList}" var="product">
+        <%--        <!-- <c:forEach var="user" items="${userListKey}"> -->--%>
         <div class="shop-item">
-            <span class="shop-item-title"> CFE Tshirt</span>
-<%--            <!-- <span class="shop-item-title"> ${Prod name from DB}</span>  -->--%>
-            <img class="shop-item-image" src="../../pub/Images/tshirt_kid.jpeg" />
+            <span class="shop-item-title"> ${product.name}</span>
+            <%--            <!-- <span class="shop-item-title"> ${Prod name from DB}</span>  -->--%>
+            <img class="shop-item-image" src="${product.imageUrl}" />
             <div class="shop-item-details">
-                <span class="shop-item-price">12.99</span>
-                <button class="btn btn-primary shop-item-button" role="button">
-                    Add To Cart
-                </button>
-<%--                <!--  <td><a href="/registration-url-path/register?id=${productid}"> Edit </a>  </td> -->--%>
+                <span class="shop-item-price">${product.unitPrice}</span>
+<%--                <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onClick="updateCart( ${product.name}, ${product.imageUrl}, ${product.unitPrice} )">--%>
+
+<%--                    <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onclick="testBtnClick(`${product.id}`,`${product.name}`, `${product.imageUrl}`, `${product.unitPrice}`)">--%>
+<%--                        <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onclick="testBtnClick(`${product.id}`)">--%>
+                            <a class="btn btn-primary shop-item-button"  role="button" href="/addToSessionCart?id=${product.id}&searchKey=${searchKey}">
+<%--                <a class="btn btn-primary shop-item-button"  role="button" href="/showProducts/page?currentPage=${currentPage}&category=${searchCategory}&search=${searchKey}">--%>
+                            Add To Cart </a>
+<%--                    </button>--%>
+
+
+                <%--                <!--  <td><a href="/registration-url-path/register?id=${productid}"> Edit </a>  </td> -->--%>
                 <!-- backend controller - check if that prod exist and check if i have qty >0 and add to order and write to DB -->
                 <!-- if user remove from cart then remove from DB ... user, product , order , order_product  -->
                 <!-- user link to order and order to products ... if order exist then add product to it else create new order  -->
             </div>
         </div>
-<%--        <!-- </c:forEach> -->--%>
-
-        <div class="shop-item">
-            <span class="shop-item-title">Red Brand Shoe</span>
-            <img class="shop-item-image" src="../../pub/Images/shoe_women.jpeg" />
-            <div class="shop-item-details">
-                <span class="shop-item-price">12.99</span>
-                <button class="btn btn-primary shop-item-button" role="button">
-                    Add To Cart
-                </button>
-            </div>
-        </div>
-
-        <div class="shop-item">
-            <span class="shop-item-title">THL Tshirt</span>
-            <img class="shop-item-image" src="../../pub/Images/tshirt_men.jpeg" />
-            <div class="shop-item-details">
-                <span class="shop-item-price">12.99</span>
-                <button class="btn btn-primary shop-item-button" role="button">
-                    Add To Cart
-                </button>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<section class="container content-section">
-    <h2 class="section-header">CART</h2>
-    <div class="cart-row">
-        <span class="cart-item cart-header cart-column">ITEM</span>
-        <span class="cart-price cart-header cart-column">PRICE</span>
-        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+        <%--        <!-- </c:forEach> -->--%>
+        </c:forEach>
     </div>
 
-    <div class="cart-items">
-        <!-- <div class="cart-row">
-          <div class="cart-item cart-column">
-            <img class="cart-item-image" src="../Images/Shirt.png" width="20" height="20"/>
-            <span class="cart-item-title">T Shirt</span>
-          </div>
-          <span class="cart-price cart-column">$19.99</span>
-          <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="text" value="1" />
-            <button class="btn btn-danger " type="button">REMOVE</button>
-          </div>
+    <div>
+        Total Items : ${totalItems} - Page ${currentPage} of ${totalPages}
 
-        </div>
+        <span>
+<%--        <c:forEach items="${totalPages}" var="page">--%>
+<%--            ${page} &nbsp;--%>
 
+<%--        </c:forEach>--%>
 
-          <div class="cart-row">
-            <div class="cart-item cart-column">
-              <img class="cart-item-image" src="../Images/Cofee.png" width="20" height="20"/>
-              <span class="cart-item-title">T Shirt</span>
-            </div>
-            <span class="cart-price cart-column">$12.99</span>
-            <div class="cart-quantity cart-column">
-              <input class="cart-quantity-input" type="text" value="1" />
-              <button class="btn btn-danger " type="button">REMOVE</button>
-            </div>
+               <c:forEach var = "i" begin = "1" end = "${totalPages}">
+                   &nbsp;&nbsp;
 
-          </div> -->
+<%--                   <a href="/showProducts/page?currentPage=${i}&" > <c:out value = "${i}" /> </a>--%>
+                   <a href="/showProducts/page?currentPage=${i}&category=${searchCategory}&search=${searchKey}" > <c:out value = "${i}" /> </a>
+                </c:forEach>
+
+        </span>
+
     </div>
 
+<%--    <form method="get" action="/showProduct">--%>
+<%--        <button type="submit" name = "previous">previous</button>--%>
+<%--        <button type="submit" name = "next">next</button>--%>
+<%--    </form>--%>
 
+<%--    <% String prodPage = session.getAttribute("showProductPage").toString();--%>
+<%--        out.print("something "+prodPage);--%>
+<%--    %>--%>
 
-    <div class="cart-total">
-        <strong class="cart-total-title">Total</strong>
-        <span class="cart-total-price">$0.00</span>
-    </div>
+<%--    <a class="btn btn-primary shop-item-button"  role="button" href="/showProducts?previous=${pageStart}">--%>
+<%--        previous </a>--%>
+<%--    <a class="btn btn-primary shop-item-button"  role="button" href="/showProducts?next=${pageStart}" >--%>
+<%--        next </a>--%>
 
-    <button class= "btn btn-primary btn-purchase" type="button">PURCHASE</button>
 
 </section>
 
@@ -200,3 +251,8 @@
 </body>
 </html>
 
+<%--<form action="add" method="post">--%>
+<%--https://stackoverflow.com/questions/5401366/how-to-add-these-the-items-in-a-cart-jsp--%>
+<%--    <input type="hidden" name="id" value="${id}" />--%>
+<%--    <input type="submit" value="Add to cart" />--%>
+<%--</form>--%>

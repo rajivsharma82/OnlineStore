@@ -33,6 +33,7 @@
     </form>
 
     <p>Don't have an account? <a href="/registration-url-path/register">signup here</a> </p>
+<%--    <p>Don't have an account? <a href="/user/register">signup here</a> </p>--%>
 </div>
 </body>
 </html>

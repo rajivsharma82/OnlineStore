@@ -11,14 +11,30 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
 
-	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
-	public ModelAndView index(HttpServletRequest request, HttpSession session) throws Exception {
+	@RequestMapping(value =  "/" , method = RequestMethod.GET)
+	public ModelAndView about(HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView response = new ModelAndView();
-		response.setViewName("index");
+		//response.setViewName("redirect:/showProducts");
+		//session.invalidate();
+		response.setViewName("redirect:/showProducts");
 
 		return response;
 	}
 
+	@RequestMapping(value =  "/about" , method = RequestMethod.GET)
+	public ModelAndView index(HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView response = new ModelAndView();
+		response.setViewName("about/about");
 
+		return response;
+	}
+
+	@RequestMapping(value =  "/contactus" , method = RequestMethod.GET)
+	public ModelAndView contactus(HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView response = new ModelAndView();
+		response.setViewName("about/contactus");
+
+		return response;
+	}
 
 }
