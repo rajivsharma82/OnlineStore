@@ -1,3 +1,4 @@
+[OnlineStoreCaseStudy.docx](https://github.com/rajivsharma82/OnlineStore/files/8234888/OnlineStoreCaseStudy.docx)
 # OnlineStore
 
 This Online Store website can be used to 
