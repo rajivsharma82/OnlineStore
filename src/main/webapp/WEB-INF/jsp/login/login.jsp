@@ -11,7 +11,6 @@
 <div class="container-login" style=" margin-top: 10% ; margin-left: 25%">
     <h1>Login</h1>
     <!-- Form  -->
-<%--    <form id="form"  method="GET" action="/loginSubmit">--%>
         <form action="/login/loginSecurityPost" method="POST">
 
         <!-- Full Name -->
@@ -33,7 +32,6 @@
     </form>
 
     <p>Don't have an account? <a href="/registration-url-path/register">signup here</a> </p>
-<%--    <p>Don't have an account? <a href="/user/register">signup here</a> </p>--%>
 </div>
 </body>
 </html>

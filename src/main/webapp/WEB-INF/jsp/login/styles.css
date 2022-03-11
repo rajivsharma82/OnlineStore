@@ -100,27 +100,6 @@ html,body{
     border-radius: 50%;
 }
 
-
-.main-footer{
-    background-color: lightblue;
-    color:white;
-    padding: 0.25 0;
-
-
-}
-
-.main-footer-container{
-    display: flex;
-    align-items: center;
-
-}
-
-.main-footer-container ul{
-    flex-grow:1;
-    text-align: end;
-
-}
-
 .footer-nav li{
     padding: 0 .5em;
 }

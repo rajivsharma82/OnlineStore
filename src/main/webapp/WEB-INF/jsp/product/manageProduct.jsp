@@ -2,23 +2,16 @@
 
 <jsp:include page="../include/header.jsp" />
 
-<form  >
+<div style="margin-left: 3rem; margin-right: 3rem; alignment: center">
+
+
+<form >
     <table style="margin-top: 2rem">
         <tr>
-<%--            <td>--%>
-<%--                <input type="text" name="search" placeholder="Search Product">--%>
-<%--            </td>--%>
-
-<%--                <button type="submit">Search</button>--%>
             <td>
                 <a class="btn btn-primary btn-sm"  role="button"
                    href="/admin/addProduct">Add New Product</a>
             </td>
-<%--            <td>--%>
-<%--                <a class="btn btn-primary btn-sm"  role="button"--%>
-<%--                   href="/admin/manageProduct/display">Display All Products</a>--%>
-<%--            </td>--%>
-
         </tr>
     </table>
 
@@ -54,6 +47,8 @@
     </c:forEach>
     </tbody>
 </table>
+
+</div>
 
 <script>
     document.getElementsByClassName("deleteProduct").addEventListener("onclick", deleteProductFun);

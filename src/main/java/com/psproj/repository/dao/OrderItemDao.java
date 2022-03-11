@@ -15,7 +15,6 @@ public interface OrderItemDao extends JpaRepository<OrderItem, Long> {
 
     @Query("select o from OrderItem o where o.order.id = :orderId and o.product = :product")
     List<OrderItem> findByOrderIdAndProductId(@Param("orderId")  Long orderId, @Param("product") Product product);
-//    List<OrderItem> findByOrderIdAndProductId(@Param("orderId")  Long orderId, @Param("productId")  Long productId);
 
     @Query("select o from OrderItem o where o.order.id = :orderId")
     List<OrderItem> findByOrderId(@Param("orderId")  Long orderId);

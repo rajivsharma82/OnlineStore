@@ -27,29 +27,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// if the incoming username or email is out found in the database
-		// this user will be null
-		// TODO if you want to login using username column you can change this to findByUsername or even findByUsernameOrEmail
+
 		User user = userDao.findByEmail(username);
 
 		if (user == null) {
-			// this means that the username was not found in the database so we are done
-			// and we can get out of here
+
 			throw new UsernameNotFoundException("Username '" + username + "' not found in database");
 		}
 
-
 		boolean accountIsEnabled = true;
-
-
-		// spring security configs
 		boolean accountNonExpired = true;
-
-
 		boolean credentialsNonExpired = true;
-
 		boolean accountNonLocked = true;
-
 		List<UserRole> userRoles = userDao.getUserRoles(user.getId());
 		Collection<? extends GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
 

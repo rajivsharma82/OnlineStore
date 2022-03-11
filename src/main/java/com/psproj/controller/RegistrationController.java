@@ -62,8 +62,7 @@ public class RegistrationController {
             response.setViewName("registration/register1");
         }
         else{
-            // there are no errors on the form submission so this is either a create or an update.
-            // a new user object is needed to perform add/update
+
             User user = new User();
 
             String encryptedPassword = passwordEncoder.encode(form.getPassword());
@@ -87,12 +86,6 @@ public class RegistrationController {
             response.setViewName("redirect:/login/login");
 
         }
-
-        // Get object of RegisterFOrmBeanClass, Form.setName(get the value from the JSP form)
-        // do above for all the form fields
-        // Create an object of UserDAO, DAO.Save(Form newUser ) -- i will be having
-        // Spring Boot , JPA - @Entity , Front end JSP
-        // FIx the condition-when there is no errors in form only then save to DB
 
         return response;
     }

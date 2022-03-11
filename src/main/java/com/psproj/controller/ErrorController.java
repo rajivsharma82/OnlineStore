@@ -13,12 +13,10 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 @Controller
 @RequestMapping("/error")
-// this restricts the controller to admin only, this can be done at the class level or at the method level
+
 //@PreAuthorize("hasAuthority('ADMIN')")
 public class ErrorController {
 
-
-    //@PreAuthorize("hasAuthority('ADMIN', 'USER')")
     @RequestMapping(value = "/error", method = RequestMethod.GET)
     public ModelAndView index(HttpServletRequest request, HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();

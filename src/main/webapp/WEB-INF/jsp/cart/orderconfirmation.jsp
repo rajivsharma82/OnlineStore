@@ -11,32 +11,9 @@
 </head>
 <body>
 
-<h1>Order Confirmation : ${orderTrackingNumber}</h1>
+<h2>Thank you for your Order</h2>
+<br>
+<h4>Order Confirmation : ${orderTrackingNumber}</h4>
+<p>Go back to Home Page <a href="/">Home Page</a> </p>
 
-
-<footer class="main-footer">
-    <div class="container main-footer-container">
-        <h3 class="band-name">The Online Store</h3>
-        <ul class="nav footer-nav">
-            <li>
-                <a href="https://youtube.com" target="_blank">
-                    <img src="../../pub/Images/YouTubeLogo.jpeg" style="height: 35px" />
-                </a>
-            </li>
-            <li>
-                <a href="https://Spotify.com" target="_blank">
-                    <img src="../../pub/Images/SpotityLogo.png" style="height: 45px" />
-                </a>
-            </li>
-            <li>
-                <a href="https://facebook.com" target="_blank">
-                    <img src="../../pub/Images/FBlogo.png" style="height: 35px" />
-                </a>
-            </li>
-        </ul>
-    </div>
-</footer>
-<%--<script src="store.js" async></script>--%>
-</body>
-</html>
-
+<jsp:include page="../include/footer.jsp" />

@@ -17,24 +17,11 @@ public interface ProductDAO extends JpaRepository<Product, Long> {
 
     public List<Product> findByNameContainingIgnoreCase(@Param("name") String name);
 
-//    @Query(value="SELECT u.* FROM product u WHERE u.name like %:name%", nativeQuery = true)
-//    public List<Product> findByNameContainingIgnoreCaseLike(@Param("name") String name);
-
-    //@Query(value="SELECT u.* FROM product u WHERE u.category_id = :categoryId", nativeQuery = true)
-   // public Page<Product> findByCategory(@Param("categoryId") Long categoryId, Pageable pageable);
-
     @Query(value = "SELECT * FROM product WHERE category_id = ?1 ORDER BY ?1" ,
             countQuery = "SELECT count(*) FROM product WHERE category_id = ?1",
             nativeQuery = true)
     public Page<Product> findByCategory(@Param("categoryId") Long categoryId, Pageable pageable);
 
-//    @Query(value="SELECT u.* FROM product u WHERE u.category_id = :categoryId", nativeQuery = true)
-//    public List<Product> findByCategory(@Param("categoryId") Long categoryId, Pageable pageable);
-
-
-//    @Query(value = "SELECT * FROM product WHERE category_id = ?1 ORDER BY ?1" ,
-//            countQuery = "SELECT count(*) FROM product WHERE category_id = ?1",
-//            nativeQuery = true)
     @Query(value="SELECT * FROM product WHERE name like %:name%",
             countQuery = "SELECT count(*) FROM product WHERE name like %:name%",
             nativeQuery = true)

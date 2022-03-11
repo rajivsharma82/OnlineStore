@@ -8,10 +8,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <%--    <link rel="stylesheet" href="styles.css" />--%>
-<%--    <link rel="stylesheet" href="../../../../pub/css/styles.css">--%>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>The Online | Store</title>
 </head>
 
@@ -33,23 +30,7 @@
         });
 
     }
-// From the test button click, call a servlet with the information (product name, price and image url)
-    // implement the servlet controller to add concetenated data inside a List<String>
-    // Also add the list to session variable
-    // create a new scriplet beside the cart variable to print the size of the list
-    // inside the scriplet i can refer session variable and so the size to get the total
 
-    <%--    $(document).ready(function() {--%>
-<%--        $('#cartBtnId').click(function (){--%>
-<%--            console.log("inside click JSP")--%>
-
-<%--&lt;%&ndash;            &lt;%&ndash;%>--%>
-<%--&lt;%&ndash;                out.print(list.size());&ndash;%&gt;--%>
-<%--&lt;%&ndash;          %>&ndash;%&gt;--%>
-
-
-<%--        });--%>
-<%--    });--%>
 </script>
 
 <body>
@@ -70,41 +51,13 @@
             </td>
 
             <td>
-<%--                <%!--%>
-
-<%--                    List<String> list = new ArrayList();--%>
-<%--                    public List<String> updateCart(String name, String image, String price) {--%>
-<%--                        String addToCart = name + "|" + image + "|" + price;--%>
-<%--                        list.add(addToCart);--%>
-<%--                        System.out.println("inside the cart method");--%>
-<%--                        return list;--%>
-<%--                    }%>--%>
-
             <%
                 if(session.getAttribute("totalOrderQuantity") != null)
                 {
                     out.print(session.getAttribute("totalOrderQuantity").toString());
-//                    System.out.println("inside the cart info if condition ");
-
                 }
-
-//                out.print("abc");
-
-
             %>
-
-<%--                <%!--%>
-
-<%--                    List<String> list = new ArrayList();--%>
-<%--                    public List<String> updateCart(String name, String image, String price) {--%>
-<%--                        String addToCart = name + "|" + image + "|" + price;--%>
-<%--                        list.add(addToCart);--%>
-<%--                        System.out.println("inside the cart method");--%>
-<%--                        return list;--%>
-<%--                    }%>--%>
-
             </td>
-
         </tr>
     </table>
 </form>
@@ -123,22 +76,10 @@
             <img class="shop-item-image" src="${product.imageUrl}" />
             <div class="shop-item-details">
                 <span class="shop-item-price">${product.unitPrice}</span>
-<%--                <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onClick="updateCart( ${product.name}, ${product.imageUrl}, ${product.unitPrice} )">--%>
-
-<%--                    <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onclick="testBtnClick(`${product.id}`,`${product.name}`, `${product.imageUrl}`, `${product.unitPrice}`)">--%>
-<%--                        <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onclick="testBtnClick(`${product.id}`)">--%>
                             <a class="btn  btn-primary btn-sm "  role="button" href="/addToSessionCart?id=${product.id}&searchKey=${searchKey}">
                             Add To Cart </a>
-<%--                    </button>--%>
-
-
-                <%--                <!--  <td><a href="/registration-url-path/register?id=${productid}"> Edit </a>  </td> -->--%>
-                <!-- backend controller - check if that prod exist and check if i have qty >0 and add to order and write to DB -->
-                <!-- if user remove from cart then remove from DB ... user, product , order , order_product  -->
-                <!-- user link to order and order to products ... if order exist then add product to it else create new order  -->
             </div>
         </div>
-        <%--        <!-- </c:forEach> -->--%>
         </c:forEach>
     </div>
 
@@ -167,12 +108,5 @@
         </ul>
     </div>
 </footer>
-<%--<script src="store.js" async></script>--%>
 </body>
 </html>
-
-<%--<form action="add" method="post">--%>
-<%--https://stackoverflow.com/questions/5401366/how-to-add-these-the-items-in-a-cart-jsp--%>
-<%--    <input type="hidden" name="id" value="${id}" />--%>
-<%--    <input type="submit" value="Add to cart" />--%>
-<%--</form>--%>

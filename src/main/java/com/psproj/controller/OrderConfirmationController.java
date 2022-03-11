@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -48,7 +49,7 @@ public class OrderConfirmationController {
 
 	public final String orderComplete = "complete";
 
-	@RequestMapping(value =  "/orderconfirmation" , method = RequestMethod.POST)
+	@RequestMapping(value =  "/orderconfirmation" , method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView index(@Valid UserBillingBean form,
 							  @RequestParam Integer userIdInSession,
 							  @RequestParam Integer orderIdInSession,
@@ -132,6 +133,43 @@ public class OrderConfirmationController {
 
 		BigDecimal totalOrderPrice = new BigDecimal(0);
 
+		if(orderId != null){
+			List<OrderItem> orderItemList = orderItemDao.findByOrderId(orderId);
+			response.addObject("orderId", orderId);
+			response.addObject("orderItemListKey", orderItemList);
+
+			Order order = orderDao.findByOrderId(orderId).get(0);
+			totalOrderPrice = order.getTotalPrice();
+			response.addObject("totalOrderPrice", totalOrderPrice);
+		}
+
+		return response;
+	}
+
+
+	@RequestMapping(value = "/manageOrderHistory", method = RequestMethod.GET)
+	public ModelAndView manageOrderHistory(@RequestParam (required = false) Long orderId,
+										   @RequestParam (required = false) String search,
+										   @RequestParam (required = false) String userId) throws Exception {
+
+		ModelAndView response = new ModelAndView();
+		response.setViewName("cart/manageOrderHistory");
+		List<Order> orderHistoryList = new ArrayList<>();
+
+		if(StringUtils.isEmpty(search) && StringUtils.isEmpty(userId)  ){
+			orderHistoryList = orderDao.findAll();
+		}else if(StringUtils.isEmpty(search) && ! StringUtils.isEmpty(userId) ){
+			orderHistoryList = orderDao.findByUserId(Integer.valueOf(userId));
+		}
+		else{
+			orderHistoryList = orderDao.findByOrderTrackingNumber(search);
+		}
+
+			response.addObject("orderHistoryList",orderHistoryList);
+
+
+		BigDecimal totalOrderPrice = new BigDecimal(0);
+//		if(!StringUtils.isEmpty(searchKey))
 		if(orderId != null){
 			List<OrderItem> orderItemList = orderItemDao.findByOrderId(orderId);
 			response.addObject("orderId", orderId);

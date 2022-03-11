@@ -1,14 +1,15 @@
 package com.psproj.controller;
 
 import com.psproj.form.EditUserFormBean;
+import com.psproj.form.QueryFormBean;
 import com.psproj.form.RegisterProductBean;
 import com.psproj.repository.dao.ProductCategoryDAO;
 import com.psproj.repository.dao.ProductDAO;
-import com.psproj.repository.entity.Product;
-import com.psproj.repository.entity.ProductCategory;
-import com.psproj.repository.entity.User;
-import com.psproj.repository.entity.UserRole;
+import com.psproj.repository.dao.UserQueryDao;
+import com.psproj.repository.entity.*;
+import com.psproj.utilities.OnlineStoreUtilities;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -37,6 +39,12 @@ public class AdminController {
 
     @Autowired
     ProductCategoryDAO productCategoryDAO;
+
+    @Autowired
+    OnlineStoreUtilities onlineStoreUtilities;
+
+    @Autowired
+    UserQueryDao userQueryDao;
 
     //@PreAuthorize("hasAuthority('ADMIN', 'USER')")
     @RequestMapping(value = "/home", method = RequestMethod.GET)
@@ -209,6 +217,104 @@ public class AdminController {
             product.setActive(false);
             productDAO.save(product);
         }
+
+        return response;
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @RequestMapping(value =  "/contactus" , method = RequestMethod.GET)
+    public ModelAndView contactus(HttpServletRequest request,
+                                  HttpSession session) throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("about/contactus");
+
+        User user = onlineStoreUtilities.getUserInSession();
+        response.addObject("user", user);
+
+        return response;
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @RequestMapping(value =  "/contactusQuery" , method = RequestMethod.GET)
+    public ModelAndView contactusQuery(@Valid QueryFormBean queryFormBean,
+                                  HttpServletRequest request,
+                                  HttpSession session) throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("redirect:/");
+
+        UserQuery userQuery = new UserQuery();
+        userQuery.setOrderTrackingNumber(queryFormBean.getOrderTrackingNumber());
+        userQuery.setStatus("open");
+        userQuery.setUserQuery(queryFormBean.getQuery());
+
+
+
+        User user = onlineStoreUtilities.getUserInSession();
+        response.addObject("user", user);
+        userQuery.setUser(user);
+
+        userQueryDao.save(userQuery);
+
+        return response;
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @RequestMapping(value = "/manageUserQuery", method = RequestMethod.GET)
+    public ModelAndView manageUserQuery(@RequestParam (required = false) String id,
+                                           @RequestParam (required = false) String adminResponse,
+                                           @RequestParam (required = false) String search,
+                                           @RequestParam (required = false) String queryStatus) throws Exception {
+
+        ModelAndView response = new ModelAndView();
+        response.setViewName("user/manageUserQuery");
+
+        if( ! StringUtils.isEmpty(id) && ! StringUtils.isEmpty(adminResponse)){
+            UserQuery userQuery = userQueryDao.findById(Integer.valueOf(id)).get();
+            userQuery.setAdminResponse(adminResponse);
+            userQuery.setStatus("closed");
+            userQueryDao.save(userQuery);
+        }
+
+
+        List<UserQuery> userQueryList = new ArrayList<>();
+
+        if(StringUtils.isEmpty(search) && StringUtils.isEmpty(queryStatus) ){
+            userQueryList = userQueryDao.findAll();
+        } else if(StringUtils.isEmpty(search) && ! StringUtils.isEmpty(queryStatus)){
+            userQueryList = userQueryDao.findByStatusContainingIgnoreCase(queryStatus);
+        }
+        else{
+            userQueryList = userQueryDao.findByOrderTrackingNumber(search);
+        }
+
+        response.addObject("userQueryList",userQueryList);
+
+//
+//        BigDecimal totalOrderPrice = new BigDecimal(0);
+////		if(!StringUtils.isEmpty(searchKey))
+//        if(orderId != null){
+//            List<OrderItem> orderItemList = orderItemDao.findByOrderId(orderId);
+//            response.addObject("orderId", orderId);
+//            response.addObject("orderItemListKey", orderItemList);
+//
+//            Order order = orderDao.findByOrderId(orderId).get(0);
+//            totalOrderPrice = order.getTotalPrice();
+//            response.addObject("totalOrderPrice", totalOrderPrice);
+//        }
+
+        return response;
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @RequestMapping(value = "/userQuery", method = RequestMethod.GET)
+    public ModelAndView userQuery() throws Exception {
+
+        ModelAndView response = new ModelAndView();
+        response.setViewName("user/userQuery");
+        User user = onlineStoreUtilities.getUserInSession();
+        List<UserQuery> userQueryList = new ArrayList<>();
+        userQueryList = userQueryDao.findByUser(user.getId());
+        response.addObject("userQueryList",userQueryList);
 
         return response;
     }

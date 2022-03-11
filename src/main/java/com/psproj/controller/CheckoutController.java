@@ -1,13 +1,7 @@
 package com.psproj.controller;
 
-import com.psproj.repository.dao.OrderDao;
-import com.psproj.repository.dao.OrderItemDao;
-import com.psproj.repository.dao.ProductDAO;
-import com.psproj.repository.dao.UserDao;
-import com.psproj.repository.entity.Order;
-import com.psproj.repository.entity.OrderItem;
-import com.psproj.repository.entity.Product;
-import com.psproj.repository.entity.User;
+import com.psproj.repository.dao.*;
+import com.psproj.repository.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -38,6 +32,9 @@ public class CheckoutController {
 
     @Autowired
     OrderItemDao orderItemDao;
+
+    @Autowired
+    UserBillingDAO userBillingDAO;
 
     //Create Product Controller which will display the Product form to add Product in DB
 
@@ -71,7 +68,7 @@ public class CheckoutController {
     public ModelAndView checkout(HttpServletRequest request, HttpSession session) throws Exception {
         List<OrderItem> orderItemList = new ArrayList<>();
         Double totalOrderPrice=0d;
-
+        UserBilling userBilling = null;
 
         ModelAndView response = new ModelAndView();
         response.setViewName("cart/checkout");
@@ -92,28 +89,23 @@ public class CheckoutController {
         if(userIdInSession > 0){
             userOrder = orderDao.findByUserIdAndStatus(userIdInSession,"pending");
 
-
-            //System.out.println("user id by id and status is " + userOrder.get(0).getId());
             if(userOrder != null && userOrder.size() > 0){
-
-                System.out.println("order existing" + userOrder);
-
-                ord = userOrder.get(0);
-                totalOrderPrice = userOrder.get(0).getTotalPrice().doubleValue();
-
-                orderIdInSession = ord.getId(); // Get the order id with status pending for the user in session
+                 ord = userOrder.get(0);
+                 totalOrderPrice = userOrder.get(0).getTotalPrice().doubleValue();
+                 orderIdInSession = ord.getId(); // Get the order id with status pending for the user in session
                  orderItemList = orderItemDao.findByOrderId(orderIdInSession);
             }
             response.addObject("orderIdInSession", orderIdInSession);
             response.addObject("userIdInSession", userIdInSession);
-        }
 
+           List<UserBilling> userBillingList = userBillingDAO.findByUserId(userIdInSession);
+           if(userBillingList != null && userBillingList.size()>0){
+               userBilling = userBillingList.get(0);
+           }
+           response.addObject("userBilling", userBilling);
+        }
         response.addObject("orderItemListKey", orderItemList);
         response.addObject("totalOrderPrice",totalOrderPrice);
-
-
-
-
         return response;
     }
 

@@ -14,10 +14,7 @@ public class IndexController {
 	@RequestMapping(value =  "/" , method = RequestMethod.GET)
 	public ModelAndView about(HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView response = new ModelAndView();
-		//response.setViewName("redirect:/showProducts");
-		//session.invalidate();
 		response.setViewName("redirect:/showProducts");
-
 		return response;
 	}
 
@@ -29,12 +26,6 @@ public class IndexController {
 		return response;
 	}
 
-	@RequestMapping(value =  "/contactus" , method = RequestMethod.GET)
-	public ModelAndView contactus(HttpServletRequest request, HttpSession session) throws Exception {
-		ModelAndView response = new ModelAndView();
-		response.setViewName("about/contactus");
 
-		return response;
-	}
 
 }

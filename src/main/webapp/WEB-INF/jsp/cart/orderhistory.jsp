@@ -2,70 +2,16 @@
 
 <jsp:include page="../include/header.jsp" />
 
-<form method="get" action="/orderHistory" >
-   <table style="margin-top: 2rem">
-       <tr>
-           <td>
-               <input type="text" name="search" value="${searchKey}">
-           </td>
-           <td>
-               <button type="submit">Search</button>
-           </td>
-       </tr>
-   </table>
+<div style="align-content: center; margin-left: 3rem; margin-right: 3rem">
 
-
-</form>
-
-<%--<form method="get" action="/registration-url-path/userList">--%>
-<%--    First Name <input type="text" name="firstName">--%>
-<%--    <br>--%>
-<%--    Last Name <input type="text" name="lastName">--%>
-<%--    <button type="submit">Search</button>--%>
-<%--</form>--%>
-
-
-<%--<%--%>
-<%--    if(session.getAttribute("username") != null) {--%>
-
-<%--        out.println("username inside different page ");--%>
-<%--        out.println(session.getAttribute("username"));--%>
-
-<%--    }--%>
-<%--    session.setAttribute("cartItems","123-1,899-1");--%>
-
-<%--%>--%>
-
-<%--<table border="1">--%>
-<%--    <tr>--%>
-<%--        <td><b>Id</b></td>--%>
-<%--        <td><b>Username</b></td>--%>
-<%--        <td><b>Email</b></td>--%>
-<%--        <td><b>First Name</b></td>--%>
-<%--        <td><b>Last Name</b></td>--%>
-<%--        <td><b>Password</b></td>--%>
-<%--        <td><b>Edit</b></td>--%>
-<%--        <td><b>Delete</b></td>--%>
-<%--    </tr>--%>
-<%--    <c:forEach items="${userSearchList}" var="user">--%>
-<%--        <tr>--%>
-<%--            <td>${user.id}</td>--%>
-<%--            <td>${user.username}</td>--%>
-<%--            <td>${user.email}</td>--%>
-<%--            <td>${user.firstName}</td>--%>
-<%--            <td>${user.lastName}</td>--%>
-<%--            <td>${user.password}</td>--%>
-<%--            <td><a class="btn btn-primary"  role="button" href="/registration-url-path/register?id=${user.id}">Edit</a></td>--%>
-<%--            <td><a class="btn btn-danger" role="button" href="/registration-url-path/deleteUser?id=${user.id}">Delete</a></td>--%>
-<%--        </tr>--%>
-<%--    </c:forEach>--%>
-<%--</table>--%>
-
+<h2 style="margin-top: 2rem; align-self: center">Order History</h2>
 
 <table class="table table-striped" style="margin-top: 4rem">
     <thead>
     <tr>
         <th scope="col">#</th>
+        <th scope="col">User Id</th>
+        <th scope="col">Email</th>
         <th scope="col">Total Quantity</th>
         <th scope="col">Total Price</th>
         <th scope="col">Status</th>
@@ -78,7 +24,8 @@
     <c:forEach items="${orderHistoryList}" var="order">
         <tr>
             <td>${order.orderTrackingNumber}</td>
-
+            <td>${order.user.id}</td>
+            <td>${order.user.email}</td>
             <td>${order.totalQuantity}</td>
             <td>${order.totalPrice}</td>
 
@@ -86,7 +33,6 @@
             <td>${order.lastUpdated}</td>
 
             <td><a class="btn btn-primary btn-sm"  role="button" href="/orderHistory?orderId=${order.id}">View</a></td>
-<%--            <td><a class="btn btn-danger btn-sm" role="button" href="/registration-url-path/deleteUser?id=${user.id}&searchKey=${searchKey}">Delete</a></td>--%>
         </tr>
     </c:forEach>
     </tbody>
@@ -117,12 +63,7 @@
                     <input type="hidden" name = "cartItemId"   value=${cartItem.id} />
                     <input type="hidden" name = "cartItemOrderId"   value=${cartItem.order.id} />
                     <input class="cart-quantity-input" type="text" id = "id-${cartItem.id}" name = "quantityField" value=${cartItem.quantity} />
-                        <%--
-
-                        <%--                <a class="btn btn-danger"  role="button" href="/deleteItemFromCart?id=${cartItem.id}&orderId=${cartItem.order.id}">--%>
-                        <%--                    REMOVE </a>--%>
-
-                </div>
+                 </div>
 
             </div>
         </c:forEach>
@@ -136,9 +77,9 @@
         <span class="cart-total-price">${totalOrderPrice}</span>
     </div>
 
-    <%--    <button class= "btn btn-primary btn-purchase" type="button">PURCHASE</button>--%>
-
 </section>
 </c:if>
+
+</div>
 
 <jsp:include page="../include/footer.jsp" />

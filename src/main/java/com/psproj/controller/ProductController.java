@@ -44,53 +44,8 @@ public class ProductController {
 
     @Autowired
     OnlineStoreUtilities onlineStoreUtilities;
-//
-//    @PreAuthorize("hasAnyAuthority('ADMIN')")
-//    @RequestMapping(value = "/addproduct", method = RequestMethod.GET)
-//    public ModelAndView addProduct(@Valid RegisterProductBean productForm, BindingResult errors, HttpSession session) throws Exception {
-//        ModelAndView response = new ModelAndView();
-//        response.setViewName("product/addproduct");
-//        System.out.println(productForm);
-//        return response;
-//    }
-//
-//
-//
-//    @RequestMapping(value = "/addProductSubmit", method = RequestMethod.GET)
-//    public ModelAndView addProductSubmit(@Valid RegisterProductBean productForm, BindingResult errors, HttpSession session) throws Exception {
-//        ModelAndView response = new ModelAndView();
-//        response.setViewName("product/addproduct");
-//        response.addObject("ProductFormBeanKey",productForm);
-//
-//        System.out.println(productForm);
-//
-//
-//        // Add Product Category
-//        // Get the category id from the Category Name
-//        ProductCategory prodCat = isProdCategoryAvailable(productForm);
-//
-//        if( prodCat == null ){
-//            ProductCategory productCategory = new ProductCategory();
-//            productCategory.setCategoryName(productForm.getProductCategory());
-//            prodCat = productCategoryDAO.save(productCategory);
-//        }
-//
-//       // Add Product
-//        Product product = new Product();
-//
-//        product.setSku(productForm.getSku());
-//        product.setName(productForm.getName());
-//        product.setDescription(productForm.getDescription());
-//        product.setUnitPrice(BigDecimal.valueOf(productForm.getUnitPrice()));
-//        product.setImageUrl(productForm.getImageUrl());
-//        product.setActive(true);
-//        product.setUnitsInStock(productForm.getUnitsInStock());
-//        product.setCategory(prodCat);
-//        productDAO.save(product);
-//
-//        return response;
-//    }
 
+    int displayProdNum = 8;
 
     @RequestMapping(value = "/productSearch", method = RequestMethod.GET)
     public ModelAndView productSearch(@RequestParam (required = false) String search, HttpSession session) throws Exception {
@@ -108,8 +63,7 @@ public class ProductController {
         }
 
         if(!StringUtils.isEmpty(search)){
-//            List<Product> productSearchList = productDAO.findByNameContainingIgnoreCaseLike(search);
-            List<Product> productSearchList = productDAO.findByNameContainingIgnoreCaseLike(search, PageRequest.of(0,4)).getContent();
+            List<Product> productSearchList = productDAO.findByNameContainingIgnoreCaseLike(search, PageRequest.of(0,displayProdNum)).getContent();
             response.addObject("productSearchList",productSearchList);
             response.addObject("searchKey", search);
 
@@ -120,7 +74,6 @@ public class ProductController {
         }else{
             response.setViewName("redirect:/showProducts");
         }
-
         return response;
     }
 
@@ -128,67 +81,6 @@ public class ProductController {
     public ModelAndView showProducts(HttpSession session) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("redirect:/showProducts/page?currentPage=1");
-//        response.setViewName("index");
-
-//        int pageStart = 0;
-
-//        if(StringUtils.isEmpty(next) && StringUtils.isEmpty(previous)) {
-//            session.setAttribute("showProductPage", 0);
-//            pageStart =0;
-//        }
-//        else{
-//            if(!StringUtils.isEmpty(next)){
-//                int val = Integer.parseInt(session.getAttribute("showProductPage").toString());
-//                session.setAttribute("showProductPage", val+1);
-//                pageStart = val+1;
-//
-//            }
-//            if(!StringUtils.isEmpty(previous)){
-//                int val = Integer.parseInt(session.getAttribute("showProductPage").toString());
-//                if(val>0){
-//                    session.setAttribute("showProductPage", val-1);
-//                    pageStart=val-1;
-//                }
-//            }
-//        }
-
-//        System.out.println("page start -------" + pageStart);
-//        int currentPage = 1;
-//
-//            Page<Product> page = productDAO.findAll(PageRequest.of(pageStart,4));
-////        List<Product>  productSearchList = productDAO.findAll();
-////            List<Product> productSearchList = productPageList.get().collect(Collectors.toList());
-//        List<Product> productSearchList = page.getContent();
-//        int totalPages = page.getTotalPages();
-//        long totalItems = page.getTotalElements();
-//
-//
-//
-//
-//            response.addObject("productSearchList",productSearchList);
-//            response.addObject("pageStart", pageStart);
-//            response.addObject("totalItems", totalItems);
-//            response.addObject("totalPages", totalPages);
-//            response.addObject("currentPage",currentPage);
-//
-//
-//             User user = onlineStoreUtilities.getUserInSession();
-//            if(user != null) {
-//
-//            Order order = onlineStoreUtilities.pendingUserOrder();
-//                if (order != null) {
-//                session.setAttribute("totalOrderQuantity", order.getTotalQuantity());
-//                session.setAttribute("totalOrderPrice", order.getTotalPrice());
-//             }
-//
-//            }
-
-//
-//        for(Product product: productSearchList){
-//            System.out.println(product);
-//            System.out.println("pageStart   " + pageStart);
-//        }
-
         return response;
     }
 
@@ -207,31 +99,11 @@ public class ProductController {
                      pageNum = currentPage;
                  }
 
-
-//        if(StringUtils.isEmpty(next) && StringUtils.isEmpty(previous)) {
-//            session.setAttribute("showProductPage", 0);
-//            pageStart =0;
-//        }
-//        else{
-//            if(!StringUtils.isEmpty(next)){
-//                int val = Integer.parseInt(session.getAttribute("showProductPage").toString());
-//                session.setAttribute("showProductPage", val+1);
-//                pageStart = val+1;
-//
-//            }
-//            if(!StringUtils.isEmpty(previous)){
-//                int val = Integer.parseInt(session.getAttribute("showProductPage").toString());
-//                if(val>0){
-//                    session.setAttribute("showProductPage", val-1);
-//                    pageStart=val-1;
-//                }
-//            }
-//        }
         Page<Product> page = null;
         System.out.println("page start -------" + currentPage);
 
         if(StringUtils.isEmpty(search) && StringUtils.isEmpty(category)){
-            page = productDAO.findAll(PageRequest.of(pageNum-1,4));
+            page = productDAO.findAll(PageRequest.of(pageNum-1,displayProdNum));
         }
 
         if(StringUtils.isEmpty(search) && ! StringUtils.isEmpty(category)){
@@ -242,8 +114,6 @@ public class ProductController {
             page = getProductsBySearchKeyword(search, pageNum);
         }
 
-//        List<Product>  productSearchList = productDAO.findAll();
-//            List<Product> productSearchList = productPageList.get().collect(Collectors.toList());
         List<Product> productSearchList = page.getContent();
         int totalPages = page.getTotalPages();
         long totalItems = page.getTotalElements();
@@ -267,10 +137,8 @@ public class ProductController {
             }
 
         }
-
         return response;
     }
-
 
     public ProductCategory isProdCategoryAvailable(RegisterProductBean productForm){
         ProductCategory productCatFound = null;
@@ -281,7 +149,7 @@ public class ProductController {
         }
         System.out.println(productCatFound.getCategoryName());
         System.out.println(formProductCategory);
-//        return productCatFound.getCategoryName().equals(formProductCategory);
+
         return productCatFound;
     }
 
@@ -290,7 +158,6 @@ public class ProductController {
     public ModelAndView productCatSearch(@RequestParam (required = false) String search, HttpSession session) throws Exception {
         long prodCatId = 0;
         ModelAndView response = new ModelAndView();
-//        response.setViewName("product/searchProduct");
         response.setViewName("index");
 
         User user = onlineStoreUtilities.getUserInSession();
@@ -309,12 +176,9 @@ public class ProductController {
                 ProductCategory productCategory = productCategoryList.get(0);
                 prodCatId = productCategory.getId();
             }
-//            List<Product> productSearchList = productDAO.findByNameContainingIgnoreCaseLike(search);
-            List<Product> productSearchList = productDAO.findByCategory(prodCatId, PageRequest.of(0,4)).getContent();
+            List<Product> productSearchList = productDAO.findByCategory(prodCatId, PageRequest.of(0,displayProdNum)).getContent();
 
             response.addObject("productSearchList",productSearchList);
-//            response.addObject("searchKey", search);
-
             for(Product product: productSearchList){
                 System.out.println(product);
             }
@@ -334,20 +198,16 @@ public class ProductController {
                 ProductCategory productCategory = productCategoryList.get(0);
                 prodCatId = productCategory.getId();
             }
-            productSearchList = productDAO.findByCategory( prodCatId, PageRequest.of(pageNum-1,4));
-
-
+            productSearchList = productDAO.findByCategory( prodCatId, PageRequest.of(pageNum-1,displayProdNum));
         }
-
         return productSearchList;
     }
-
 
     private Page<Product> getProductsBySearchKeyword(String search, int pageNum) {
         Page<Product> productSearchList = null;
 
         if (!StringUtils.isEmpty(search)) {
-            productSearchList = productDAO.findByNameContainingIgnoreCaseLike( search, PageRequest.of(pageNum-1,4));
+            productSearchList = productDAO.findByNameContainingIgnoreCaseLike( search, PageRequest.of(pageNum-1,displayProdNum));
         }
 
          return productSearchList;

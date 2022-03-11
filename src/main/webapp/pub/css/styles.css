@@ -5,7 +5,8 @@
 }
 html,body{
     margin: 0;
-    padding:0;
+    /*padding:0;*/
+    padding-bottom: 70px;
 }
 
 .nav ul{
@@ -46,9 +47,10 @@ html,body{
 .main-header{
     background-color: rgba(0,0,0,.6);
     background-blend-mode: multiply;
-    background-image: url("../Images/HeaderBackground.jpg");
+    /*background-image: url("../Images/HeaderBackground.jpg");*/
+    background-image: url("../Images/shopping3.jpeg");
     background-size: cover;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     min-height: 2rem;
 }
 
@@ -206,8 +208,9 @@ html,body{
 }
 
 .shop-item-image{
-    height: 150px;
-    width: 175px;
+    height: 200px;
+    width: 200px;
+    align-items: center;
 }
 
 .shop-item-details{
@@ -362,4 +365,11 @@ html,body{
 
 .footer-nav li{
     padding: 0 .5em;
+}
+
+.main-footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    color: #386641;
 }

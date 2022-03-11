@@ -2,23 +2,11 @@
 
 <jsp:include page="../include/header.jsp" />
 
-<%--<!DOCTYPE html>--%>
-<%--<html lang="en">--%>
-<%--<head>--%>
-<%--    <meta charset="UTF-8">--%>
-<%--    <meta http-equiv="X-UA-Compatible" content="IE=edge">--%>
-<%--    <meta name="viewport" content="width=device-width, initial-scale=1.0">--%>
-<%--    <title>Form Validation</title>--%>
-<%--    <link rel="stylesheet" href="../../../pub/css/signup.css">--%>
-<%--    <link rel="icon" type="image/png" href="https://www.google.com/s2/u/0/favicons?domain=css-tricks.com">--%>
-<%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">--%>
-<%--</html>--%>
 <head>
     <link rel="stylesheet" href="../../../pub/css/signup.css">
 </head>
 
 <body>
-<%--    <link rel="stylesheet" href="../../../pub/css/signup.css">--%>
 
 <div class="container-signup" style="margin-left: 30%" >
 <%--    <div class="container-signup" style="width: 80%">--%>
@@ -76,13 +64,6 @@
                    value="${formBeanKey.confirmPassword}" required>
         </div>
 
-<%--        <!-- Confirm Password-->--%>
-<%--        <div class="form-group">--%>
-<%--            <label for="confirmPassword"> Confirm Password</label>--%>
-<%--            <input type="password" id="confirmPassword" name = "confirmPassword" placeholder="Confirm password"--%>
-<%--                   value="${formBeanKey.confirmPassword}" required>--%>
-<%--        </div>--%>
-
         <button type = "submit"> Register </button>
     </form>
 
@@ -100,8 +81,5 @@
 
 </div>
 
-
-<%--<!-- Script -->--%>
-<%--<script src="../../../pub/js/signup.js"></script>--%>
 </body>
 </html>

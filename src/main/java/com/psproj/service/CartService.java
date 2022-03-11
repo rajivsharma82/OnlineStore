@@ -64,15 +64,7 @@ public class CartService {
 
         //product id added to cart
         userCartList.add(productId);
-
-        // set the total number of cart List size this would reflect the total number of cart items
-        // ordered product details
-
         Product product = productDAO.findById((long) productId).get();
-
-        // Create the Order table data
-        //Step - Check if any pending order exists for the user in session (in Order table).
-
         List<Order> userOrder;
 
         if (userIdInSession > 0) {
@@ -81,13 +73,8 @@ public class CartService {
             return false;
         }
 
-        // FInd if the order is existing (with pending status for this user) or need to create a new order
-
         Order ord = fetchOrCreatePendingOrder(userOrder, userDao);
         log.info(ord.getId().toString());
-        // Add the order Item - check if order Item for the same order id and product id already existing
-        //if yes then increment the quantity other wise insert a new record with the new product id.
-
         incExistingOrCreateNewOrderItem(orderItemDao, ord, product);
 
         // update the total quantity  and total price of user's order in the order table
@@ -152,10 +139,7 @@ public class CartService {
             ord.setStatus("pending");
             ord.setOrderTrackingNumber(orderTrackingNumber);
             orderDao.save(ord);
-//            log.info(ord.toString());
-
         }
-//        return orderDao.findByUserIdAndStatus(userIdInSession,"pending").get(0);
         return ord;
     }
 

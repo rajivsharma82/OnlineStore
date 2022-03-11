@@ -59,29 +59,9 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<OrderItem> orderItem;
 
-//    @OneToOne(mappedBy = "product")
-//    private OrderItem orderItem;
-
     @Override
     public String toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
-
-//    @Override
-//    public String toString() {
-//        return "Product{" +
-//                "id=" + id +
-//                ", category=" + category +
-//                ", sku='" + sku + '\'' +
-//                ", name='" + name + '\'' +
-//                ", description='" + description + '\'' +
-//                ", unitPrice=" + unitPrice +
-//                ", imageUrl='" + imageUrl + '\'' +
-//                ", active=" + active +
-//                ", unitsInStock=" + unitsInStock +
-//                ", dateCreated=" + dateCreated +
-//                ", lastUpdated=" + lastUpdated +
-//                '}';
-//    }
 }
