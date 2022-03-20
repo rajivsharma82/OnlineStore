@@ -2,7 +2,10 @@
 
 <jsp:include page="../include/header.jsp" />
 
-<form  >
+<div style="margin-left: 3rem; margin-right: 3rem; alignment: center">
+
+
+<form >
     <table style="margin-top: 2rem">
         <tr>
 <%--            <td>--%>
@@ -54,6 +57,8 @@
     </c:forEach>
     </tbody>
 </table>
+
+</div>
 
 <script>
     document.getElementsByClassName("deleteProduct").addEventListener("onclick", deleteProductFun);

@@ -29,12 +29,6 @@ public class IndexController {
 		return response;
 	}
 
-	@RequestMapping(value =  "/contactus" , method = RequestMethod.GET)
-	public ModelAndView contactus(HttpServletRequest request, HttpSession session) throws Exception {
-		ModelAndView response = new ModelAndView();
-		response.setViewName("about/contactus");
 
-		return response;
-	}
 
 }

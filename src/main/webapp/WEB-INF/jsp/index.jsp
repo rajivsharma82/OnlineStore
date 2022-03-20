@@ -4,6 +4,7 @@
 
 <jsp:include page="include/header.jsp" />
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,6 +55,87 @@
 
 <body>
 
+<div class="row align-items-center">
+    <div class="col-2">
+        <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Category
+            </button>
+            <ul class="dropdown-menu">
+                <%--                                <li><a class="dropdown-item" href="/productCatSearch?search=BOOKS">BOOKS</a></li>--%>
+                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=BOOKS">BOOKS</a></li>
+                <%--                                <li><a class="dropdown-item" href="/productCatSearch?search=TOY">TOY</a></li>--%>
+                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=TOY">TOY</a></li>
+                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=ALBUM">ALBUM</a></li>
+                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=MOVIE">MOVIE</a></li>
+                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=MERCH">MERCH</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=GAME">GAME</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <form method="get" action="/showProducts/page">
+
+            <div class="input-group mb-3">
+<%--                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">--%>
+<%--                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>--%>
+                <input type="text"  class="form-control" name="search"
+<%--                       style=" width: 200px ;margin-left: 300px"--%>
+                       placeholder="Search Product" value="${searchKey}">
+
+                <input type="hidden" name="currentPage" value="1" />
+                <button type="submit" class="btn btn-lg btn-info">Search</button>
+            </div>
+
+<%--            <div class="input-group mb-3">--%>
+<%--                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">--%>
+<%--                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>--%>
+<%--            </div>--%>
+
+<%--                <input type="text"  class="form-control-lg" name="search" style=" width: 200px ;margin-left: 300px"--%>
+<%--                       placeholder="Search Product" value="${searchKey}">--%>
+
+<%--                <input type="hidden" name="currentPage" value="1" />--%>
+
+<%--                <button type="submit" class="btn btn-lg btn-info">Search</button>--%>
+<%--    </div>--%>
+<%--    <div class="col-2">--%>
+<%--        <form method="get" action="/showProducts/page">--%>
+
+<%--            <input type="text"  class="form-control-lg" name="search" style=" width: 200px ;margin-left: 300px"--%>
+<%--                   placeholder="Search Product" value="${searchKey}">--%>
+
+<%--            <input type="hidden" name="currentPage" value="1" />--%>
+
+<%--            <button type="submit" class="btn btn-lg btn-info">Search</button>--%>
+
+             </form>
+<%--        </form>--%>
+    </div>
+
+    <div class="col-4" >
+        <div>
+            <a class="nav-link fs-4" href="/goToCart" style="color: darkslategray ">
+                <i style="font-size:30px; margin-left: 10rem" class="fa">&#xf07a;</i>
+                <%
+                    if(session.getAttribute("totalOrderQuantity") != null)
+                    {
+                        out.print(session.getAttribute("totalOrderQuantity").toString());
+//                    System.out.println("inside the cart info if condition ");
+
+                    }
+
+                %>
+
+            </a>
+
+        </div>
+
+
+    </div>
+</div>
 
 <%--<form method="get" action="/productSearch">--%>
     <table>
@@ -65,49 +147,49 @@
 
                     <div>
                         <!-- Example single danger button -->
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Category
-                            </button>
-                            <ul class="dropdown-menu">
-<%--                                <li><a class="dropdown-item" href="/productCatSearch?search=BOOKS">BOOKS</a></li>--%>
-                                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=BOOKS">BOOKS</a></li>
+<%--                        <div class="btn-group">--%>
+<%--                            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">--%>
+<%--                                Category--%>
+<%--                            </button>--%>
+<%--                            <ul class="dropdown-menu">--%>
+<%--&lt;%&ndash;                                <li><a class="dropdown-item" href="/productCatSearch?search=BOOKS">BOOKS</a></li>&ndash;%&gt;--%>
+<%--                                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=BOOKS">BOOKS</a></li>--%>
 
-<%--                                <li><a class="dropdown-item" href="/productCatSearch?search=TOY">TOY</a></li>--%>
-                                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=TOY">TOY</a></li>
-                                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=MERCH">MERCH</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=GAME">GAME</a></li>
-                            </ul>
-                        </div>
+<%--&lt;%&ndash;                                <li><a class="dropdown-item" href="/productCatSearch?search=TOY">TOY</a></li>&ndash;%&gt;--%>
+<%--                                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=TOY">TOY</a></li>--%>
+<%--                                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=MERCH">MERCH</a></li>--%>
+<%--                                <li><hr class="dropdown-divider"></li>--%>
+<%--                                <li><a class="dropdown-item" href="/showProducts/page?currentPage=1&category=GAME">GAME</a></li>--%>
+<%--                            </ul>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
             </td>
 
 <%--                <form method="get" action="/productSearch">--%>
 <%--                    /showProducts/page?currentPage=1&category=BOOKS--%>
-                <form method="get" action="/showProducts/page">
-                    <td>
-                        <input type="text" name="search" style=" width: 200px ;margin-left: 300px"
-                               placeholder="Search Product" value="${searchKey}">
+<%--                <form method="get" action="/showProducts/page">--%>
+<%--                    <td>--%>
+<%--                        <input type="text"  class="form-control-lg" name="search" style=" width: 200px ;margin-left: 300px"--%>
+<%--                               placeholder="Search Product" value="${searchKey}">--%>
 
-                        <input type="hidden" name="currentPage" value="1" />
+<%--                        <input type="hidden" name="currentPage" value="1" />--%>
 
-                    </td>
-                    <td>
-                        <button type="submit">Search</button>
-                    </td>
+<%--                    </td>--%>
+<%--                    <td>--%>
+<%--                        <button type="submit" class="btn btn-lg btn-info">Search</button>--%>
+<%--                    </td>--%>
 
-                </form>
+<%--                </form>--%>
 
             <td>
 
 <%--                Cart1:--%>
                 <div>
 <%--                    <i style="font-size:30px; margin-left: 15rem" class="fa">&#xf07a;</i>--%>
-                    <a class="nav-link" href="/goToCart">
-                        <i style="font-size:30px; margin-left: 10rem" class="fa">&#xf07a;</i>
-                    </a>
+<%--                    <a class="nav-link" href="/goToCart">--%>
+<%--                        <i style="font-size:30px; margin-left: 10rem" class="fa">&#xf07a;</i>--%>
+<%--                    </a>--%>
                 </div>
 <%--                <span class="badge">${cartSize}</span>--%>
             </td>
@@ -123,18 +205,18 @@
 <%--                        return list;--%>
 <%--                    }%>--%>
 
-            <%
-                if(session.getAttribute("totalOrderQuantity") != null)
-                {
-                    out.print(session.getAttribute("totalOrderQuantity").toString());
-//                    System.out.println("inside the cart info if condition ");
+<%--            <%--%>
+<%--                if(session.getAttribute("totalOrderQuantity") != null)--%>
+<%--                {--%>
+<%--                    out.print(session.getAttribute("totalOrderQuantity").toString());--%>
+<%--//                    System.out.println("inside the cart info if condition ");--%>
 
-                }
+<%--                }--%>
 
-//                out.print("abc");
+<%--//                out.print("abc");--%>
 
 
-            %>
+<%--            %>--%>
 
 <%--                <%!--%>
 
@@ -157,17 +239,18 @@
 
 
 <section class="container content-section">
-    <h2 class="section-header">MERCH</h2>
+<%--    <h2 class="section-header">MERCH</h2>--%>
 
     <div class="shop-items">
         <c:forEach items="${productSearchList}" var="product">
         <%--        <!-- <c:forEach var="user" items="${userListKey}"> -->--%>
-        <div class="shop-item">
+        <div class="shop-item align-items-center">
             <span class="shop-item-title"> ${product.name}</span>
             <%--            <!-- <span class="shop-item-title"> ${Prod name from DB}</span>  -->--%>
             <img class="shop-item-image" src="${product.imageUrl}" />
             <div class="shop-item-details">
-                <span class="shop-item-price">${product.unitPrice}</span>
+                <span class="shop-item-price text-center" >${product.unitPrice}</span>
+                <br>
 <%--                <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onClick="updateCart( ${product.name}, ${product.imageUrl}, ${product.unitPrice} )">--%>
 
 <%--                    <button class="btn btn-primary shop-item-button" role="button" id = "cartBtnId" onclick="testBtnClick(`${product.id}`,`${product.name}`, `${product.imageUrl}`, `${product.unitPrice}`)">--%>
@@ -188,10 +271,10 @@
         </c:forEach>
     </div>
 
-    <div>
+    <div class="fs-3" style="margin-left: 20rem">
         Total Items : ${totalItems} - Page ${currentPage} of ${totalPages}
 
-        <span>
+        <span >
 <%--        <c:forEach items="${totalPages}" var="page">--%>
 <%--            ${page} &nbsp;--%>
 
@@ -199,9 +282,8 @@
 
                <c:forEach var = "i" begin = "1" end = "${totalPages}">
                    &nbsp;&nbsp;
-
 <%--                   <a href="/showProducts/page?currentPage=${i}&" > <c:out value = "${i}" /> </a>--%>
-                   <a href="/showProducts/page?currentPage=${i}&category=${searchCategory}&search=${searchKey}" > <c:out value = "${i}" /> </a>
+                   <a href="/showProducts/page?currentPage=${i}&category=${searchCategory}&search=${searchKey}" style="color: cornflowerblue; font-size: 25px"> <c:out value = "${i}" /> </a>
                 </c:forEach>
 
         </span>
@@ -225,34 +307,11 @@
 
 </section>
 
-<footer class="main-footer">
-    <div class="container main-footer-container">
-        <h3 class="band-name">The Corrs</h3>
-        <ul class="nav footer-nav">
-            <li>
-                <a href="https://youtube.com" target="_blank">
-                    <img src="../../pub/Images/YouTubeLogo.jpeg" style="height: 35px" />
-                </a>
-            </li>
-            <li>
-                <a href="https://Spotify.com" target="_blank">
-                    <img src="../../pub/Images/SpotityLogo.png" style="height: 45px" />
-                </a>
-            </li>
-            <li>
-                <a href="https://facebook.com" target="_blank">
-                    <img src="../../pub/Images/FBlogo.png" style="height: 35px" />
-                </a>
-            </li>
-        </ul>
-    </div>
-</footer>
-<%--<script src="store.js" async></script>--%>
-</body>
-</html>
 
 <%--<form action="add" method="post">--%>
 <%--https://stackoverflow.com/questions/5401366/how-to-add-these-the-items-in-a-cart-jsp--%>
 <%--    <input type="hidden" name="id" value="${id}" />--%>
 <%--    <input type="submit" value="Add to cart" />--%>
 <%--</form>--%>
+
+<jsp:include page="include/footer.jsp" />

@@ -84,37 +84,37 @@
     </div>
 
     <a button class= "btn btn-primary btn-purchase" type="button" href="/checkOutCart?orderId=${orderIdInSession}">
-        PURCHASE </a>
+        Checkout </a>
 <%--    How to get the order id from the list ${orderItemListKey} --%>
 
 
 <%--    <button class= "btn btn-primary btn-purchase" role="button" href="/checkOutCart?orderId=${cartItem.order.id}">PURCHASE</button>--%>
 
 </section>
-
-<footer class="main-footer">
-    <div class="container main-footer-container">
-        <h3 class="band-name">The Online Store</h3>
-        <ul class="nav footer-nav">
-            <li>
-                <a href="https://youtube.com" target="_blank">
-                    <img src="../../pub/Images/YouTubeLogo.jpeg" style="height: 35px" />
-                </a>
-            </li>
-            <li>
-                <a href="https://Spotify.com" target="_blank">
-                    <img src="../../pub/Images/SpotityLogo.png" style="height: 45px" />
-                </a>
-            </li>
-            <li>
-                <a href="https://facebook.com" target="_blank">
-                    <img src="../../pub/Images/FBlogo.png" style="height: 35px" />
-                </a>
-            </li>
-        </ul>
-    </div>
-</footer>
-<%--<script src="store.js" async></script>--%>
-</body>
-</html>
+<jsp:include page="../include/footer.jsp" />
+<%--<footer class="main-footer">--%>
+<%--    <div class="container main-footer-container">--%>
+<%--        <h3 class="band-name">The Online Store</h3>--%>
+<%--        <ul class="nav footer-nav">--%>
+<%--            <li>--%>
+<%--                <a href="https://youtube.com" target="_blank">--%>
+<%--                    <img src="../../pub/Images/YouTubeLogo.jpeg" style="height: 35px" />--%>
+<%--                </a>--%>
+<%--            </li>--%>
+<%--            <li>--%>
+<%--                <a href="https://Spotify.com" target="_blank">--%>
+<%--                    <img src="../../pub/Images/SpotityLogo.png" style="height: 45px" />--%>
+<%--                </a>--%>
+<%--            </li>--%>
+<%--            <li>--%>
+<%--                <a href="https://facebook.com" target="_blank">--%>
+<%--                    <img src="../../pub/Images/FBlogo.png" style="height: 35px" />--%>
+<%--                </a>--%>
+<%--            </li>--%>
+<%--        </ul>--%>
+<%--    </div>--%>
+<%--</footer>--%>
+<%--&lt;%&ndash;<script src="store.js" async></script>&ndash;%&gt;--%>
+<%--</body>--%>
+<%--</html>--%>
 

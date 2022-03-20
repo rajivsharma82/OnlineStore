@@ -44,6 +44,8 @@ public class ProductController {
 
     @Autowired
     OnlineStoreUtilities onlineStoreUtilities;
+
+    int displayProdNum = 8;
 //
 //    @PreAuthorize("hasAnyAuthority('ADMIN')")
 //    @RequestMapping(value = "/addproduct", method = RequestMethod.GET)
@@ -109,7 +111,7 @@ public class ProductController {
 
         if(!StringUtils.isEmpty(search)){
 //            List<Product> productSearchList = productDAO.findByNameContainingIgnoreCaseLike(search);
-            List<Product> productSearchList = productDAO.findByNameContainingIgnoreCaseLike(search, PageRequest.of(0,4)).getContent();
+            List<Product> productSearchList = productDAO.findByNameContainingIgnoreCaseLike(search, PageRequest.of(0,displayProdNum)).getContent();
             response.addObject("productSearchList",productSearchList);
             response.addObject("searchKey", search);
 
@@ -231,7 +233,7 @@ public class ProductController {
         System.out.println("page start -------" + currentPage);
 
         if(StringUtils.isEmpty(search) && StringUtils.isEmpty(category)){
-            page = productDAO.findAll(PageRequest.of(pageNum-1,4));
+            page = productDAO.findAll(PageRequest.of(pageNum-1,displayProdNum));
         }
 
         if(StringUtils.isEmpty(search) && ! StringUtils.isEmpty(category)){
@@ -310,7 +312,7 @@ public class ProductController {
                 prodCatId = productCategory.getId();
             }
 //            List<Product> productSearchList = productDAO.findByNameContainingIgnoreCaseLike(search);
-            List<Product> productSearchList = productDAO.findByCategory(prodCatId, PageRequest.of(0,4)).getContent();
+            List<Product> productSearchList = productDAO.findByCategory(prodCatId, PageRequest.of(0,displayProdNum)).getContent();
 
             response.addObject("productSearchList",productSearchList);
 //            response.addObject("searchKey", search);
@@ -334,7 +336,7 @@ public class ProductController {
                 ProductCategory productCategory = productCategoryList.get(0);
                 prodCatId = productCategory.getId();
             }
-            productSearchList = productDAO.findByCategory( prodCatId, PageRequest.of(pageNum-1,4));
+            productSearchList = productDAO.findByCategory( prodCatId, PageRequest.of(pageNum-1,displayProdNum));
 
 
         }
@@ -347,7 +349,7 @@ public class ProductController {
         Page<Product> productSearchList = null;
 
         if (!StringUtils.isEmpty(search)) {
-            productSearchList = productDAO.findByNameContainingIgnoreCaseLike( search, PageRequest.of(pageNum-1,4));
+            productSearchList = productDAO.findByNameContainingIgnoreCaseLike( search, PageRequest.of(pageNum-1,displayProdNum));
         }
 
          return productSearchList;

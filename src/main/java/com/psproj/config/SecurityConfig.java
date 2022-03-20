@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/pub/**", "/error/**", "/login/**","/showProducts/**", "/showProducts/page/**", "/about", "/registration-url-path/register").permitAll()
                 // these are URLs that the user must be authenticated for
                 .antMatchers("/admin/**", "/user/**", "/orderHistory","/admin/addProduct",
-                        "/registration-url-path/editUser", "/goToCart").authenticated()
+                        "/registration-url-path/editUser", "/goToCart", "/manageOrderHistory", "/admin/manageUserQuery", "/admin/contactus").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login/login")

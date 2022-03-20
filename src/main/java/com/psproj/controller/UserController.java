@@ -57,7 +57,9 @@ public class UserController {
         response.setViewName("user/userSearch");
 
         if(!StringUtils.isEmpty(search)){
-            List<User> userSearchList = userDao.findByFirstNameLike(search);
+//            List<User> userSearchList = userDao.findByFirstNameLike(search);
+            List<User> userSearchList = userDao.findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase(search);
+
 
             response.addObject("userSearchList",userSearchList);
             response.addObject("searchKey", search);

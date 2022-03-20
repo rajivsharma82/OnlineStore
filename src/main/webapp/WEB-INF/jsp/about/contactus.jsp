@@ -45,18 +45,21 @@
 <h3>Contact Form</h3>
 
 <div class="container">
-    <form action="/">
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+    <form action="/admin/contactusQuery">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Your name.." value = "${user.firstName}">
 
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Your last name.." value = "${user.lastName}">
 
         <label for="phone">Contact Number</label>
-        <input type="text" id="phone" name="phone" placeholder="Your contact number">
+        <input type="text" id="phone" name="phone" placeholder="Your contact number" value = "${user.phone}">
+
+        <label for="orderTrackingNumber">Order Tracking Number</label>
+        <input type="text" id="orderTrackingNumber" name="orderTrackingNumber" placeholder="Your Order Tracking number" required>
 
         <label for="email">Email</label>
-        <input type="text" id="email" name="email" placeholder="Your email">
+        <input type="text" id="email" name="email" placeholder="Your email" value = "${user.email}" required>
 
         <label for="country">Country</label>
         <select id="country" name="country">
@@ -64,11 +67,11 @@
             <option value="canada">Canada</option>
         </select>
 
-        <label for="subject">Subject</label>
-        <textarea id="subject" name="subject" placeholder="I have a query on the last order I made last week, could you please reach out to me asap. " style="height:200px"></textarea>
+        <label for="query">Subject</label>
+        <textarea id="query" name="query" placeholder="I have a query on the last order I made last week, could you please reach out to me asap." style="height:200px"></textarea>
 
 <%--        <input type="submit" value="Submit">--%>
-        <button type="submit" href="/index"   class="btn btn-primary contact" role="button" onclick="contactusfun()">Submit</button>
+        <button type="submit"  class="btn btn-primary contact" role="button" onclick="contactusfun()">Submit</button>
     </form>
 </div>
 
@@ -82,4 +85,7 @@
 
 </body>
 </html>
+
+<jsp:include page="../include/footer.jsp" />
+
 

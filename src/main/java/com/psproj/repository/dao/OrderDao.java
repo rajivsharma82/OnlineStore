@@ -21,6 +21,9 @@ public interface OrderDao extends JpaRepository<Order, Long> {
     @Query("select o from Order o where o.user.id = :userId")
     List<Order> findByUserId(@Param("userId")  Integer userId);
 
+    @Query("select o from Order o where o.orderTrackingNumber = :OrderTrackingNumber")
+    List<Order> findByOrderTrackingNumber(@Param("OrderTrackingNumber")  String OrderTrackingNumber);
+
 
 }
 

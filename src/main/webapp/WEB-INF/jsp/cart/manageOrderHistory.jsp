@@ -4,21 +4,22 @@
 
 <div style="align-content: center; margin-left: 3rem; margin-right: 3rem">
 
-<h2 style="margin-top: 2rem; align-self: center">Order History</h2>
-<%--<form method="get" action="/orderHistory" >--%>
-<%--   <table style="margin-top: 2rem">--%>
-<%--       <tr>--%>
-<%--           <td>--%>
-<%--               <input type="text" name="search" placeholder="Order Tracking Number"  value="${searchKey}">--%>
-<%--           </td>--%>
-<%--           <td>--%>
-<%--               <button type="submit">Search</button>--%>
-<%--           </td>--%>
-<%--       </tr>--%>
-<%--   </table>--%>
+    <h2 style="margin-top: 2rem; align-self: center">Order History</h2>
+
+<form method="get" action="/manageOrderHistory" >
+   <table style="margin-top: 2rem">
+       <tr>
+           <td>
+               <input type="text" name="search" placeholder="Order Tracking Number"  value="${searchKey}">
+           </td>
+           <td>
+               <button type="submit">Search</button>
+           </td>
+       </tr>
+   </table>
 
 
-<%--</form>--%>
+</form>
 
 <%--<form method="get" action="/registration-url-path/userList">--%>
 <%--    First Name <input type="text" name="firstName">--%>
@@ -91,7 +92,7 @@
             <td>${order.status}</td>
             <td>${order.lastUpdated}</td>
 
-            <td><a class="btn btn-primary btn-sm"  role="button" href="/orderHistory?orderId=${order.id}">View</a></td>
+            <td><a class="btn btn-primary btn-sm"  role="button" href="/manageOrderHistory?orderId=${order.id}">View</a></td>
 <%--            <td><a class="btn btn-danger btn-sm" role="button" href="/registration-url-path/deleteUser?id=${user.id}&searchKey=${searchKey}">Delete</a></td>--%>
         </tr>
     </c:forEach>

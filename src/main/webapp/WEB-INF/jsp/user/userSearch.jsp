@@ -2,18 +2,33 @@
 
 <jsp:include page="../include/header.jsp" />
 
-<form method="get" action="/registration-url-path/userSearch" >
-   <table style="margin-top: 2rem">
-       <tr>
-           <td>
-               <input type="text" name="search" value="${searchKey}">
-           </td>
-           <td>
-               <button type="submit">Search</button>
-           </td>
-       </tr>
-   </table>
+<div style="align-content: center; margin-left: 3rem; margin-right: 3rem">
 
+
+
+<form method="get" action="/registration-url-path/userSearch" >
+
+    <table style="margin-top: 2rem">
+        <tr>
+            <td>
+                <a class="btn btn-primary btn-sm"  role="button"
+                   href="/registration-url-path/manageUser">All Users</a>
+            </td>
+        </tr>
+    </table>
+
+    <table style="margin-top: 2rem">
+         <tr>
+            <td>
+                <input type="text" name="search"  placeholder="Enter first or last name"  value="${searchKey}">
+            </td>
+            <td>
+                <button type="submit">Search</button>
+            </td>
+        </tr>
+
+
+    </table>
 
 </form>
 
@@ -62,7 +77,7 @@
 <%--</table>--%>
 
 
-<table class="table table-bordered" style="margin-top: 4rem">
+<table class="table table-striped" style="margin-top: 4rem">
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -91,6 +106,8 @@
     </c:forEach>
     </tbody>
 </table>
+
+</div>
 
 <script>
     document.getElementsByClassName("deleteUser").addEventListener("onclick", deleteUserFun);

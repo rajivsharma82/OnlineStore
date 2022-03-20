@@ -51,8 +51,9 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark" >
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">The Online Store</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="/">Mall Of America</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -70,6 +71,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/orderHistory">Orders</a></li>
                                 <li><a class="dropdown-item" href="/registration-url-path/editUser">Edit Account</a></li>
+                                <li><a class="dropdown-item" href="/admin/userQuery">Query Status</a></li>
                             </ul>
 
 
@@ -86,6 +88,8 @@
                             <li><a class="dropdown-item" href="/admin/manageProduct">Manage Product</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/registration-url-path/manageUser">Manage Users</a></li>
+                            <li><a class="dropdown-item" href="/manageOrderHistory">Manage Orders</a></li>
+                            <li><a class="dropdown-item" href="/admin/manageUserQuery">Manage Queries</a></li>
                         </ul>
                     </li>
                     </sec:authorize>
@@ -101,12 +105,12 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/contactus">Contact us</a>
+                        <a class="nav-link" href="/admin/contactus">Contact us</a>
                     </li>
 
 
                 </ul>
-                <div>
+                <div style="white-space: nowrap;">
 
                     <sec:authorize access="isAuthenticated()">
                         <i class="fas fa-user"></i> <sec:authentication property="principal.username" /></a>
@@ -129,6 +133,8 @@
     </nav>
 
 </header>
+
+<div style="margin: 2rem">
 
 
 <%--<table>--%>

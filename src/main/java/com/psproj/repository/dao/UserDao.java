@@ -33,4 +33,8 @@ public interface UserDao extends JpaRepository<User,Long> {
 
     @Query(value = "delete from users u where u.email = :email", nativeQuery = true)
     List<UserRole> deleteByEmail(@Param("email")  String email);
+
+    @Query(value="SELECT u.* FROM users u WHERE u.firstName like %:search%  or u.lastName like %:search% ", nativeQuery = true)
+    public List<User> findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase(String search);
+
 }
